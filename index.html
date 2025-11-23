@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alpha Trade Pro Dashboard</title>
-    <!-- Favicon: Using Base64 encoded version of the growth arrow SVG for consistency -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3Ryb2tlPSIjNjBhNWZhIiBzdHJva2Utd2lkdGg9IjIiPjxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTEzIDdoOG0wIDB2OG0wLThsLTggOC00LTQtNiA2Ij48L3BhdGg+PC9zdmcvPg==">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -89,18 +88,12 @@
 </head>
 <body class="min-h-screen p-4 md:p-6 text-gray-100 antialiased">
 
-    <!-- Main Dashboard Container -->
     <div class="max-w-7xl mx-auto bg-gray-900 rounded-xl shadow-2xl p-4 md:p-6">
 
-        <!-- Header/Branding (Trust and Stability: Blue) -->
         <header class="pb-4 border-b border-gray-700 mb-6">
             
-            <!-- New Watchlist Marquee Bar (Horizontal Scrolling) - NOW AT THE TOP -->
             <div class="marquee-container mb-4 bg-gray-800 rounded-lg shadow-xl border border-gray-700">
                 <div class="marquee flex items-center py-2 text-sm">
-                    <!-- Watchlist Content: Duplicate the list below to ensure a smooth, looping animation -->
-                    
-                    <!-- START Watchlist Content Set 1 -->
                     <div class="marquee-item"><span class="font-bold text-gray-50">GOOGL</span> <span class="text-green-400 ml-2 font-medium">+1.52%</span></div>
                     <div class="marquee-item"><span class="font-bold text-gray-50">AAPL</span> <span class="text-red-400 ml-2 font-medium">-0.88%</span></div>
                     <div class="marquee-item"><span class="font-bold text-gray-50">TSLA</span> <span class="text-green-400 ml-2 font-medium">+3.10%</span></div>
@@ -111,9 +104,6 @@
                     <div class="marquee-item"><span class="font-bold text-gray-50">JPM</span> <span class="text-green-400 ml-2 font-medium">+0.45%</span></div>
                     <div class="marquee-item"><span class="font-bold text-gray-50">NFLX</span> <span class="text-green-400 ml-2 font-medium">+1.11%</span></div>
                     <div class="marquee-item"><span class="font-bold text-gray-50">BABA</span> <span class="text-red-400 ml-2 font-medium">-1.99%</span></div>
-                    <!-- END Watchlist Content Set 1 -->
-                    
-                    <!-- START Watchlist Content Set 2 (Duplication for seamless loop) -->
                     <div class="marquee-item"><span class="font-bold text-gray-50">GOOGL</span> <span class="text-green-400 ml-2 font-medium">+1.52%</span></div>
                     <div class="marquee-item"><span class="font-bold text-gray-50">AAPL</span> <span class="text-red-400 ml-2 font-medium">-0.88%</span></div>
                     <div class="marquee-item"><span class="font-bold text-gray-50">TSLA</span> <span class="text-green-400 ml-2 font-medium">+3.10%</span></div>
@@ -124,22 +114,18 @@
                     <div class="marquee-item"><span class="font-bold text-gray-50">JPM</span> <span class="text-green-400 ml-2 font-medium">+0.45%</span></div>
                     <div class="marquee-item"><span class="font-bold text-gray-50">NFLX</span> <span class="text-green-400 ml-2 font-medium">+1.11%</span></div>
                     <div class="marquee-item"><span class="font-bold text-gray-50">BABA</span> <span class="text-red-400 ml-2 font-medium">-1.99%</span></div>
-                    <!-- END Watchlist Content Set 2 -->
-                </div>
+                    </div>
             </div>
 
-            <!-- Top Row: Logo/Title (Centered) - NOW BELOW MARQUEE -->
             <div class="flex justify-center items-center mb-4">
                 <div class="flex items-center space-x-3 text-center">
                     <svg class="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
-                    <!-- H1 centered and "GUARANTEED" underlined in white -->
                     <h1 class="text-xl md:text-2xl font-bold text-gray-50 text-center">
                         <span class="underline text-gray-50">GUARANTEED</span> CONSISTENT TRADING RESULTS OR YOU DON’T PAY
                     </h1>
                 </div>
             </div>
             
-            <!-- Navigation Links below H1 (NOW CENTERED) -->
             <nav class="flex w-full justify-center space-x-6 text-sm pt-2 overflow-x-auto whitespace-nowrap">
                 <a href="#" class="text-blue-400 font-semibold border-b-2 border-blue-400 pb-1">Dashboard</a>
                 <a href="#" class="text-gray-400 hover:text-blue-300">Markets</a>
@@ -150,14 +136,11 @@
             
         </header>
 
-        <!-- Main Content Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
 
-            <!-- 2. Center Panel: Charting Area (EXPANDED to lg:col-span-9) -->
             <main class="lg:col-span-9">
                 <div class="bg-gray-950 p-4 rounded-xl shadow-lg h-full min-h-[400px] flex flex-col">
                     
-                    <!-- Instrument Header -->
                     <div class="flex justify-between items-center pb-3 border-b border-gray-700">
                         <h2 class="text-xl font-bold text-blue-400">NASDAQ: TSLA</h2>
                         <div class="flex items-center space-x-4 text-sm">
@@ -167,7 +150,6 @@
                         </div>
                     </div>
 
-                    <!-- Timeframe & Tools -->
                     <div class="flex space-x-3 text-sm py-2 text-gray-400 border-b border-gray-800">
                         <span class="text-blue-400 font-medium cursor-pointer">1D</span>
                         <span class="hover:text-blue-300 cursor-pointer">5D</span>
@@ -177,56 +159,41 @@
                         <span class="text-yellow-400 font-medium ml-4">LIVE</span>
                     </div>
 
-                    <!-- Chart Mock-up (Illustrative SVG with alternative colors) -->
                     <div class="flex-grow relative mt-2 chart-grid rounded-lg overflow-hidden">
                         
-                        <!-- Alert Indicator (Accents: Yellow/Orange) -->
                         <div class="absolute top-2 left-1/2 -translate-x-1/2 bg-yellow-900 border border-yellow-500 text-yellow-300 px-3 py-1 text-xs rounded-full shadow-lg">
                             <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
                             CRITICAL ALERT: High Volatility
                         </div>
 
-                        <!-- Price Action Visual (Using SVG for mock candles) -->
                         <svg class="w-full h-full p-2" viewBox="0 0 1000 400" preserveAspectRatio="none">
-                            <!-- Baseline (Gray) -->
                             <line x1="0" y1="300" x2="1000" y2="300" stroke="#475569" stroke-width="1" stroke-dasharray="2, 2"/>
                             
-                            <!-- Mock Candlesticks: Bullish (Orange) and Bearish (Cyan) -->
-                            <!-- Candle structure: x, y (top), width, height -->
-                            
-                            <!-- Bearish (Cyan) -->
                             <rect class="bearish-candle" x="50" y="250" width="10" height="50"></rect>
                             <rect class="bearish-candle" x="100" y="260" width="10" height="40"></rect>
                             
-                            <!-- Bullish (Orange) -->
                             <rect class="bullish-candle" x="150" y="270" width="10" height="30"></rect>
                             <rect class="bullish-candle" x="200" y="200" width="10" height="100"></rect>
                             <rect class="bullish-candle" x="250" y="240" width="10" height="60"></rect>
                             
-                            <!-- Bearish (Cyan) -->
                             <rect class="bearish-candle" x="300" y="220" width="10" height="80"></rect>
                             <rect class="bearish-candle" x="350" y="280" width="10" height="20"></rect>
                             
-                            <!-- Bullish (Orange) -->
                             <rect class="bullish-candle" x="400" y="180" width="10" height="120"></rect>
                             <rect class="bullish-candle" x="450" y="150" width="10" height="150"></rect>
                             <rect class="bullish-candle" x="500" y="160" width="10" height="140"></rect>
                             
-                            <!-- Bearish (Cyan) -->
                             <rect class="bearish-candle" x="550" y="180" width="10" height="80"></rect>
                             <rect class="bearish-candle" x="600" y="210" width="10" height="70"></rect>
                             
-                            <!-- Bullish (Orange) -->
                             <rect class="bullish-candle" x="650" y="150" width="10" height="150"></rect>
                             <rect class="bullish-candle" x="700" y="100" width="10" height="200"></rect>
                             <rect class="bullish-candle" x="750" y="120" width="10" height="180"></rect>
 
-                            <!-- Bearish (Cyan) -->
                             <rect class="bearish-candle" x="800" y="150" width="10" height="100"></rect>
                             <rect class="bearish-candle" x="850" y="200" width="10" height="50"></rect>
                             <rect class="bullish-candle" x="900" y="180" width="10" height="120"></rect>
 
-                            <!-- Example Moving Average Line (Teal/Muted) -->
                             <polyline fill="none" stroke="#0d9488" stroke-width="2" points="70,275 120,285 170,280 220,240 270,260 320,240 370,290 420,260 470,220 520,230 570,250 620,260 670,210 720,180 770,180 820,190 870,230 920,250" />
                         </svg>
 
@@ -234,15 +201,11 @@
                 </div>
             </main>
 
-            <!-- 3. Right Sidebar: Order/News/Data (lg:col-span-3 remains) -->
             <aside class="lg:col-span-3 space-y-6">
 
-                <!-- Trade Panel (Authority/Focus: Black/Navy) -->
                 <div class="bg-gray-950 p-4 rounded-lg shadow-inner">
-                    <!-- HEADING: Free indicator and Short training video on how to use it -->
                     <h2 class="text-lg font-semibold mb-3 text-gray-50"> Free indicator and Short training video on how to use it</h2>
                     
-                    <!-- Content (Placeholder for indicator/video details) -->
                     <ul class="space-y-2 text-sm text-gray-300">
                         <li class="flex justify-between items-start">
                             <span class="text-gray-400">Indicator Name:</span>
@@ -257,13 +220,11 @@
                             <span class="text-gray-50 font-medium text-right">8:45 minutes</span>
                         </li>
                     </ul>
-                    <!-- BUTTON: Get Indicator -->
                     <button class="w-full bg-blue-700 hover:bg-blue-800 text-white font-medium py-2 mt-4 rounded-lg transition duration-200" id="newOrderButton">
                         Get Indicator
                     </button>
                 </div>
 
-                <!-- News/Alerts Panel (Accents: Orange/Yellow) -->
                 <div class="bg-gray-950 p-4 rounded-lg shadow-inner custom-scrollbar h-64 overflow-y-auto">
                     <h2 class="text-lg font-semibold mb-3 text-gray-50">Market News</h2>
                     <div class="space-y-3 text-xs">
@@ -284,21 +245,15 @@
 
             </aside>
 
-        </div> <!-- End of Main Content Grid -->
-        
-        <!-- NEW MARKETING SECTION (Full Width) -->
-        <section class="mt-8 pt-8 border-t border-gray-700">
-            <!-- 2nd Headline -->
+        </div> <section class="mt-8 pt-8 border-t border-gray-700">
             <h2 class="text-3xl font-extrabold text-blue-400 text-center mb-8">
                 The Reasons We Are One of the Fastest Growing Trade Coaching Companies Online
             </h2>
 
-            <!-- Bulleted List Grid: Certainty Points -->
             <div class="bg-gray-800 p-6 rounded-xl shadow-xl">
                 <h3 class="text-2xl font-semibold text-gray-50 mb-5 text-center border-b border-gray-700 pb-3">With Precision and Certainty...</h3>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm text-gray-200">
                     
-                    <!-- Column 1 (5 points) -->
                     <ul class="space-y-3 p-3 bg-gray-700/50 rounded-lg">
                         <li class="flex items-start"><svg class="w-4 h-4 text-green-400 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>You'll know when to get in.</li>
                         <li class="flex items-start"><svg class="w-4 h-4 text-green-400 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>You'll know if the market is trending.</li>
@@ -307,7 +262,6 @@
                         <li class="flex items-start"><svg class="w-4 h-4 text-green-400 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>You'll know if it's going to reverse on you.</li>
                     </ul>
 
-                    <!-- Column 2 (5 points) -->
                     <ul class="space-y-3 p-3 bg-gray-700/50 rounded-lg">
                         <li class="flex items-start"><svg class="w-4 h-4 text-green-400 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>You’ll know if it's a real breakout or a fake out.</li>
                         <li class="flex items-start"><svg class="w-4 h-4 text-green-400 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>You'll know how to avoid getting in too early.</li>
@@ -316,7 +270,6 @@
                         <li class="flex items-start"><svg class="w-4 h-4 text-green-400 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>You'll know when to take a profit.</li>
                     </ul>
 
-                    <!-- Column 3 (4 points) -->
                     <ul class="space-y-3 p-3 bg-gray-700/50 rounded-lg">
                         <li class="flex items-start"><svg class="w-4 h-4 text-green-400 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>You'll know how far the move will go.</li>
                         <li class="flex items-start"><svg class="w-4 h-4 text-green-400 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>You'll know where to place your stoploss.</li>
@@ -324,7 +277,6 @@
                         <li class="flex items-start"><svg class="w-4 h-4 text-green-400 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>You'll know when the trend is ending.</li>
                     </ul>
 
-                    <!-- Column 4 (4 points) -->
                     <ul class="space-y-3 p-3 bg-gray-700/50 rounded-lg">
                         <li class="flex items-start"><svg class="w-4 h-4 text-green-400 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>You'll know if you should hold through a pullback.</li>
                         <li class="flex items-start"><svg class="w-4 h-4 text-green-400 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>You'll know if you should scale in or scale out.</li>
@@ -334,9 +286,7 @@
                 </div>
             </div>
 
-            <!-- Core Value & Social Proof -->
             <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Value Proposition Card -->
                 <div class="md:col-span-2 bg-blue-900/40 p-6 rounded-xl shadow-xl border border-blue-600/50">
                     <h3 class="text-2xl font-bold text-blue-300 mb-3">Your Roadmap to Trading Success</h3>
                     <p class="text-lg text-gray-100 font-medium leading-relaxed">
@@ -347,9 +297,7 @@
                     </p>
                 </div>
 
-                <!-- Testimonial/Social Proof Card -->
                 <div class="bg-gray-700/50 p-6 rounded-xl shadow-xl border border-gray-600">
-                    <!-- CHANGED TEXT HERE -->
                     <h3 class="text-xl font-semibold text-gray-50 mb-3">Testimonial</h3>
                     <p class="text-gray-300 italic border-l-4 border-yellow-500 pl-3">
                         "I saw you getting results... I've seen your trades and it's obviously working. That was the only proof I needed."
@@ -361,17 +309,21 @@
         
     </div>
 
-    <!-- Custom Modal for Alerts (Instead of alert()) -->
     <div id="customModal" class="fixed inset-0 bg-black bg-opacity-70 hidden justify-center items-center z-50">
         <div class="bg-gray-800 p-6 rounded-xl shadow-2xl max-w-sm w-full border-t-4 border-blue-500">
             <h3 class="text-xl font-bold mb-3 text-blue-400">Download Initiated</h3>
-            <!-- MODAL MESSAGE UPDATED IN JS -->
             <p id="modalMessage" class="text-gray-200 mb-4">Redirecting to the download page for your free indicator and training video!</p>
             <button id="closeModal" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-lg transition duration-200">
                 OK, Got It
             </button>
         </div>
     </div>
+
+    <footer class="mt-8 mb-4">
+        <p class="text-xs text-center text-gray-500 max-w-7xl mx-auto">
+            Disclaimer: Trading involves risk. Alpha Trade Pro is for informational and educational purposes only.
+        </p>
+    </footer>
 
 
     <script>
