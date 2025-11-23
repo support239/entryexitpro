@@ -59,8 +59,8 @@
         .marquee {
             white-space: nowrap;
             display: inline-block;
-            /* Animation speed: 60s for a full loop */
-            animation: marquee-scroll 60s linear infinite; 
+            /* **UPDATED SPEED: 30s for a faster, continuous loop** */
+            animation: marquee-scroll 30s linear infinite; 
         }
 
         .marquee-item {
@@ -74,7 +74,7 @@
         @keyframes marquee-scroll {
             /* Start at 0% (fully visible) */
             0% { transform: translateX(0%); }
-            /* End at -50% (scrolls one full set of duplicated items) */
+            /* End at -50% (scrolls one full set of duplicated items for seamless loop) */
             100% { transform: translateX(-50%); } 
         }
     </style>
