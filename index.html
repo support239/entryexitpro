@@ -255,7 +255,7 @@
                             <span class="text-gray-50 font-medium text-right">8:45 minutes</span>
                         </li>
                     </ul>
-                    <button class="w-full bg-blue-700 hover:bg-blue-800 text-white font-medium py-2 mt-4 rounded-lg transition duration-200" id="newOrderButton">
+                    <button class="w-full bg-blue-700 hover:bg-blue-800 text-white font-medium py-2 mt-4 rounded-lg transition duration-200" id="openFormButton">
                         Get Indicator
                     </button>
                 </div>
@@ -328,11 +328,31 @@
 
     <div id="customModal" class="fixed inset-0 bg-black bg-opacity-70 hidden justify-center items-center z-50">
         <div class="bg-gray-800 p-6 rounded-xl shadow-2xl max-w-sm w-full border-t-4 border-blue-500">
-            <h3 class="text-xl font-bold mb-3 text-blue-400">Download Initiated</h3>
-            <p id="modalMessage" class="text-gray-200 mb-4">Redirecting to the download page for your free indicator and training video!</p>
-            <button id="closeModal" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-lg transition duration-200">
-                OK, Got It
-            </button>
+            <h3 class="text-xl font-bold mb-3 text-blue-400" id="modalTitle">Get Your Free Indicator</h3>
+            
+            <form id="indicatorForm" class="space-y-4">
+                
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-400 mb-1">Full Name</label>
+                    <input type="text" id="name" name="name" required 
+                           class="w-full px-3 py-2 border border-gray-600 rounded-lg bg-gray-900 text-gray-100 focus:ring-blue-500 focus:border-blue-500"
+                           placeholder="Enter your full name">
+                </div>
+
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-400 mb-1">Email Address</label>
+                    <input type="email" id="email" name="email" required 
+                           class="w-full px-3 py-2 border border-gray-600 rounded-lg bg-gray-900 text-gray-100 focus:ring-blue-500 focus:border-blue-500"
+                           placeholder="Enter your email address">
+                </div>
+
+                <p id="modalMessage" class="text-sm text-yellow-400 pt-2 hidden">Thank you! Your download link has been sent to your email.</p>
+
+                <button type="submit" id="submitFormButton" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-lg transition duration-200">
+                    Download Now
+                </button>
+            </form>
+
         </div>
     </div>
     
@@ -347,36 +367,62 @@
         // --- Custom JavaScript for Functionality ---
 
         document.addEventListener('DOMContentLoaded', () => {
-            // Target the Get Indicator button
-            const newOrderButton = document.getElementById('newOrderButton');
+            // Target the new button to open the form
+            const openFormButton = document.getElementById('openFormButton');
             const customModal = document.getElementById('customModal');
-            const closeModal = document.getElementById('closeModal');
+            const indicatorForm = document.getElementById('indicatorForm');
             const modalMessage = document.getElementById('modalMessage');
+            const submitFormButton = document.getElementById('submitFormButton');
+            const modalTitle = document.getElementById('modalTitle');
 
-            // Handle the Get Indicator button click
-            if (newOrderButton) {
-                newOrderButton.addEventListener('click', () => {
-                    // Update modal title and message for the new 'Get Indicator' action
-                    document.querySelector('#customModal h3').textContent = "Download Initiated";
-                    modalMessage.textContent = "Redirecting to the download page for your free indicator and training video!";
+            // --- Function to open the modal/form ---
+            if (openFormButton) {
+                openFormButton.addEventListener('click', () => {
+                    // Reset modal state
+                    indicatorForm.classList.remove('hidden');
+                    submitFormButton.classList.remove('hidden');
+                    modalMessage.classList.add('hidden');
+                    modalTitle.textContent = "Get Your Free Indicator";
+                    indicatorForm.reset(); 
                     
-                    // Show the custom modal instead of using the forbidden alert()
+                    // Show the modal
                     customModal.classList.remove('hidden');
                     customModal.classList.add('flex');
                 });
             }
 
-            // Handle modal close button click
-            closeModal.addEventListener('click', () => {
-                customModal.classList.add('hidden');
-                customModal.classList.remove('flex');
+            // --- Function to handle form submission ---
+            indicatorForm.addEventListener('submit', (e) => {
+                e.preventDefault(); // Prevent default form submission/page reload
+
+                // Get form values (For demonstration purposes, this is where you'd send data to a server)
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+
+                console.log(`Form Submitted: Name: ${name}, Email: ${email}`);
+
+                // Simulate success state: Hide form inputs/button and show the confirmation message
+                indicatorForm.classList.add('hidden');
+                modalMessage.classList.remove('hidden');
+                modalTitle.textContent = "Success!";
+
+                // Optionally, you could redirect or close the modal after a delay here.
+                // For now, the user must click outside the modal to close it.
             });
 
-            // Handle closing modal by clicking outside
+            // --- Handle closing modal by clicking outside ---
             customModal.addEventListener('click', (e) => {
+                // Check if the click occurred directly on the backdrop (customModal)
                 if (e.target === customModal) {
                     customModal.classList.add('hidden');
                     customModal.classList.remove('flex');
+                    
+                    // Reset state when closing the modal
+                    indicatorForm.classList.remove('hidden');
+                    submitFormButton.classList.remove('hidden');
+                    modalMessage.classList.add('hidden');
+                    modalTitle.textContent = "Get Your Free Indicator";
+                    indicatorForm.reset();
                 }
             });
         });
