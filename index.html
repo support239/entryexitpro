@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alpha Trade Pro Dashboard</title>
+    <title>Entry Exit Pro. Confidence. Guaranteed.</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3Ryb2tlPSIjNjBhNWZhIiBzdHJva2Utd2lkdGg9IjIiPjxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTEzIDdoOG0wIDB2OG0wLThsLTggOC00LTQtNiA2Ij48L3BhdGg+PC9zdmcvPg==">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -81,7 +81,7 @@
         @keyframes marquee-scroll {
             /* Start at 0% (fully visible) */
             0% { transform: translateX(0%); }
-            /* Updated to -33.33333% to scroll exactly one-third of the total (three times duplicated) content for a seamless loop */
+            /* 3. SCROLL MODIFIED: Scrolls one-third of the content (-33.33333%) for three total sets */
             100% { transform: translateX(-33.33333%); } 
         }
     </style>
@@ -235,7 +235,25 @@
                     </button>
                 </div>
 
-                </aside>
+                <div class="bg-gray-950 p-4 rounded-lg shadow-inner custom-scrollbar h-64 overflow-y-auto">
+                    <h2 class="text-lg font-semibold mb-3 text-gray-50">Market News</h2>
+                    <div class="space-y-3 text-xs">
+                        <p class="border-l-4 border-yellow-500 pl-2">
+                            <span class="text-yellow-400 font-semibold">ALERT:</span> TSLA CEO announces new vehicle platform.
+                            <span class="block text-gray-500 mt-1">5 min ago</span>
+                        </p>
+                        <p class="border-l-4 border-blue-500 pl-2">
+                            <span class="text-blue-400 font-semibold">REPORT:</span> Analysts revise Q4 earnings forecasts upwards.
+                            <span class="block text-gray-500 mt-1">15 min ago</span>
+                        </p>
+                        <p class="border-l-4 border-red-500 pl-2">
+                            <span class="text-red-400 font-semibold">CAUTION:</span> General market sentiment turning bearish.
+                            <span class="block text-gray-500 mt-1">1 hour ago</span>
+                        </p>
+                    </div>
+                </div>
+
+            </aside>
 
         </div> <section class="mt-8 pt-8 border-t border-gray-700">
             <h2 class="text-3xl font-extrabold text-blue-400 text-center mb-8">
@@ -310,10 +328,10 @@
             </button>
         </div>
     </div>
-
+    
     <footer class="mt-8 mb-4">
         <p class="text-xs text-center text-gray-500 max-w-7xl mx-auto">
-            Disclaimer: Trading involves risk. Alpha Trade Pro is for informational and educational purposes only.
+            Disclaimer: Trading involves risk. Entry Exit Pro is for informational and educational purposes only.
         </p>
     </footer>
 
