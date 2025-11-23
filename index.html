@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alpha Trade Pro Dashboard</title>
     <!-- Favicon: Using Base64 encoded version of the growth arrow SVG for consistency -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53M2Mub3JnLzIwMDAvc3ZnIiBmaWxsPSJub25lIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHN0cm9rZT0iIzYwYTVmYSIgc3Ryb2tlLXdpZHRoPSIyIj48cGF0aCBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0xMyA3aDhtMCAwdjhtMC04bC04IDgtNC00LTYgNiI+PC9wYXRoPjwvc3ZnPg==">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3Ryb2tlPSIjNjBhNWZhIiBzdHJva2Utd2lkdGg9IjIiPjxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTEzIDdoOG0wIDB2OG0wLThsLTggOC00LTQtNiA2Ij48L3BhdGg+PC9zdmcvPg==">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Import Inter font from Google Fonts */
@@ -59,14 +59,14 @@
         .marquee {
             white-space: nowrap;
             display: inline-block;
-            /* Default (Mobile First): Fast speed (15s) */
+            /* Default (Mobile First): Fast speed */
             animation: marquee-scroll 15s linear infinite; 
         }
 
         /* Media query for Tablets and Desktops (md breakpoint in Tailwind: 768px) */
         @media (min-width: 768px) {
             .marquee {
-                /* Slower speed for larger screens (30s) */
+                /* Slower speed for larger screens */
                 animation: marquee-scroll 30s linear infinite; 
             }
         }
@@ -85,11 +85,6 @@
             /* End at -50% (scrolls one full set of duplicated items for seamless loop) */
             100% { transform: translateX(-50%); } 
         }
-        
-        /* Utility class to stop the animation when loading */
-        .marquee-paused {
-            animation-play-state: paused;
-        }
     </style>
 </head>
 <body class="min-h-screen p-4 md:p-6 text-gray-100 antialiased">
@@ -102,12 +97,34 @@
             
             <!-- New Watchlist Marquee Bar (Horizontal Scrolling) - NOW AT THE TOP -->
             <div class="marquee-container mb-4 bg-gray-800 rounded-lg shadow-xl border border-gray-700">
-                <div id="stockMarquee" class="marquee flex items-center py-2 text-sm">
-                    <!-- Data will be inserted here by JavaScript -->
-                    <span id="marquee-loading" class="marquee-item text-gray-500 animate-pulse">
-                        <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-blue-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
-                        Loading real-time market data...
-                    </span>
+                <div class="marquee flex items-center py-2 text-sm">
+                    <!-- Watchlist Content: Duplicate the list below to ensure a smooth, looping animation -->
+                    
+                    <!-- START Watchlist Content Set 1 -->
+                    <div class="marquee-item"><span class="font-bold text-gray-50">GOOGL</span> <span class="text-green-400 ml-2 font-medium">+1.52%</span></div>
+                    <div class="marquee-item"><span class="font-bold text-gray-50">AAPL</span> <span class="text-red-400 ml-2 font-medium">-0.88%</span></div>
+                    <div class="marquee-item"><span class="font-bold text-gray-50">TSLA</span> <span class="text-green-400 ml-2 font-medium">+3.10%</span></div>
+                    <div class="marquee-item"><span class="font-bold text-gray-50">AMZN</span> <span class="text-green-400 ml-2 font-medium">+0.75%</span></div>
+                    <div class="marquee-item"><span class="font-bold text-gray-50">MSFT</span> <span class="text-red-400 ml-2 font-medium">-2.15%</span></div>
+                    <div class="marquee-item"><span class="font-bold text-gray-50">NVDA</span> <span class="text-green-400 ml-2 font-medium">+4.92%</span></div>
+                    <div class="marquee-item"><span class="font-bold text-gray-50">META</span> <span class="text-red-400 ml-2 font-medium">-0.12%</span></div>
+                    <div class="marquee-item"><span class="font-bold text-gray-50">JPM</span> <span class="text-green-400 ml-2 font-medium">+0.45%</span></div>
+                    <div class="marquee-item"><span class="font-bold text-gray-50">NFLX</span> <span class="text-green-400 ml-2 font-medium">+1.11%</span></div>
+                    <div class="marquee-item"><span class="font-bold text-gray-50">BABA</span> <span class="text-red-400 ml-2 font-medium">-1.99%</span></div>
+                    <!-- END Watchlist Content Set 1 -->
+                    
+                    <!-- START Watchlist Content Set 2 (Duplication for seamless loop) -->
+                    <div class="marquee-item"><span class="font-bold text-gray-50">GOOGL</span> <span class="text-green-400 ml-2 font-medium">+1.52%</span></div>
+                    <div class="marquee-item"><span class="font-bold text-gray-50">AAPL</span> <span class="text-red-400 ml-2 font-medium">-0.88%</span></div>
+                    <div class="marquee-item"><span class="font-bold text-gray-50">TSLA</span> <span class="text-green-400 ml-2 font-medium">+3.10%</span></div>
+                    <div class="marquee-item"><span class="font-bold text-gray-50">AMZN</span> <span class="text-green-400 ml-2 font-medium">+0.75%</span></div>
+                    <div class="marquee-item"><span class="font-bold text-gray-50">MSFT</span> <span class="text-red-400 ml-2 font-medium">-2.15%</span></div>
+                    <div class="marquee-item"><span class="font-bold text-gray-50">NVDA</span> <span class="text-green-400 ml-2 font-medium">+4.92%</span></div>
+                    <div class="marquee-item"><span class="font-bold text-gray-50">META</span> <span class="text-red-400 ml-2 font-medium">-0.12%</span></div>
+                    <div class="marquee-item"><span class="font-bold text-gray-50">JPM</span> <span class="text-green-400 ml-2 font-medium">+0.45%</span></div>
+                    <div class="marquee-item"><span class="font-bold text-gray-50">NFLX</span> <span class="text-green-400 ml-2 font-medium">+1.11%</span></div>
+                    <div class="marquee-item"><span class="font-bold text-gray-50">BABA</span> <span class="text-red-400 ml-2 font-medium">-1.99%</span></div>
+                    <!-- END Watchlist Content Set 2 -->
                 </div>
             </div>
 
@@ -332,6 +349,7 @@
 
                 <!-- Testimonial/Social Proof Card -->
                 <div class="bg-gray-700/50 p-6 rounded-xl shadow-xl border border-gray-600">
+                    <!-- CHANGED TEXT HERE -->
                     <h3 class="text-xl font-semibold text-gray-50 mb-3">Testimonial</h3>
                     <p class="text-gray-300 italic border-l-4 border-yellow-500 pl-3">
                         "I saw you getting results... I've seen your trades and it's obviously working. That was the only proof I needed."
@@ -347,6 +365,7 @@
     <div id="customModal" class="fixed inset-0 bg-black bg-opacity-70 hidden justify-center items-center z-50">
         <div class="bg-gray-800 p-6 rounded-xl shadow-2xl max-w-sm w-full border-t-4 border-blue-500">
             <h3 class="text-xl font-bold mb-3 text-blue-400">Download Initiated</h3>
+            <!-- MODAL MESSAGE UPDATED IN JS -->
             <p id="modalMessage" class="text-gray-200 mb-4">Redirecting to the download page for your free indicator and training video!</p>
             <button id="closeModal" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-lg transition duration-200">
                 OK, Got It
@@ -357,127 +376,9 @@
 
     <script>
         // --- Custom JavaScript for Functionality ---
-        const STOCK_SYMBOLS = ['GOOGL', 'AAPL', 'TSLA', 'AMZN', 'MSFT', 'NVDA', 'META', 'JPM', 'NFLX', 'BABA'];
-        const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent";
-        const apiKey = ""; 
-        const MAX_RETRIES = 3;
-        const REFRESH_INTERVAL_MS = 60000; // Refresh data every 60 seconds
-
-        /**
-         * Fetches real-time stock data from the Gemini API with Google Search grounding.
-         * Implements exponential backoff for retries.
-         * @param {number} retryCount - The current retry attempt number.
-         */
-        async function fetchStockData(retryCount = 0) {
-            const marquee = document.getElementById('stockMarquee');
-            const loadingIndicator = document.getElementById('marquee-loading');
-            
-            // Show loading state and pause animation
-            if (loadingIndicator) loadingIndicator.style.display = 'inline-flex';
-            if (marquee) marquee.classList.add('marquee-paused');
-
-            const systemPrompt = "You are a specialized financial data parsing engine. Your response must be a single, valid JSON array containing objects for each requested stock symbol. Do not include any text outside the JSON block. Each object must have keys: 'symbol', 'price', and 'changePercentage'.";
-            const userQuery = `Using real-time web search, provide the current stock price and daily percentage change for the following publicly traded symbols: ${STOCK_SYMBOLS.join(', ')}.`;
-
-            const payload = {
-                contents: [{ parts: [{ text: userQuery }] }],
-                tools: [{ "google_search": {} }],
-                systemInstruction: {
-                    parts: [{ text: systemPrompt }]
-                },
-                generationConfig: {
-                    responseMimeType: "application/json",
-                    responseSchema: {
-                        type: "ARRAY",
-                        items: {
-                            type: "OBJECT",
-                            properties: {
-                                "symbol": { "type": "STRING", "description": "The stock ticker symbol." },
-                                "price": { "type": "STRING", "description": "The current stock price, formatted as a string (e.g., '$185.23')." },
-                                "changePercentage": { "type": "STRING", "description": "The daily percentage change, formatted with sign (e.g., '+1.52%' or '-0.88%')." }
-                            },
-                            required: ["symbol", "price", "changePercentage"]
-                        }
-                    }
-                }
-            };
-
-            try {
-                const response = await fetch(`${API_URL}?key=${apiKey}`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                if (!response.ok) {
-                    if (retryCount < MAX_RETRIES) {
-                        const delay = Math.pow(2, retryCount) * 1000 + Math.random() * 1000;
-                        await new Promise(resolve => setTimeout(resolve, delay));
-                        return fetchStockData(retryCount + 1);
-                    }
-                    throw new Error(`API request failed with status ${response.status}`);
-                }
-
-                const result = await response.json();
-                const jsonText = result.candidates?.[0]?.content?.parts?.[0]?.text;
-
-                if (!jsonText) {
-                    throw new Error("Received empty or malformed JSON response from API.");
-                }
-
-                const parsedData = JSON.parse(jsonText);
-                updateMarquee(parsedData);
-
-            } catch (error) {
-                console.error("Failed to fetch or process stock data:", error);
-                if (marquee) {
-                    marquee.innerHTML = `<span class="marquee-item text-red-400">ERROR: Failed to load real-time data. Retrying in 60s.</span>`;
-                    marquee.classList.remove('marquee-paused');
-                }
-            } finally {
-                // Hide loading indicator and resume animation
-                if (loadingIndicator) loadingIndicator.style.display = 'none';
-                if (marquee) marquee.classList.remove('marquee-paused');
-            }
-        }
-
-        /**
-         * Renders the fetched stock data into the marquee DOM element.
-         * @param {Array<Object>} data - Array of stock objects {symbol, price, changePercentage}.
-         */
-        function updateMarquee(data) {
-            const marquee = document.getElementById('stockMarquee');
-            if (!marquee || !Array.isArray(data) || data.length === 0) return;
-
-            let contentHTML = '';
-            
-            // Function to generate the HTML for a single item
-            const generateItemHTML = (item) => {
-                const isPositive = item.changePercentage.trim().startsWith('+');
-                const colorClass = isPositive ? 'text-green-400' : 'text-red-400';
-                
-                return `
-                    <div class="marquee-item" data-symbol="${item.symbol}">
-                        <span class="font-bold text-gray-50">${item.symbol}</span> 
-                        <span class="text-gray-400 ml-2">${item.price}</span> 
-                        <span class="${colorClass} ml-2 font-medium">${item.changePercentage}</span>
-                    </div>
-                `;
-            };
-
-            // Duplicate the content to ensure continuous looping
-            for (let i = 0; i < 2; i++) {
-                data.forEach(item => {
-                    contentHTML += generateItemHTML(item);
-                });
-            }
-
-            marquee.innerHTML = contentHTML;
-        }
-
 
         document.addEventListener('DOMContentLoaded', () => {
-            // --- Custom Modal Logic ---
+            // Target the Get Indicator button
             const newOrderButton = document.getElementById('newOrderButton');
             const customModal = document.getElementById('customModal');
             const closeModal = document.getElementById('closeModal');
@@ -486,9 +387,11 @@
             // Handle the Get Indicator button click
             if (newOrderButton) {
                 newOrderButton.addEventListener('click', () => {
+                    // Update modal title and message for the new 'Get Indicator' action
                     document.querySelector('#customModal h3').textContent = "Download Initiated";
                     modalMessage.textContent = "Redirecting to the download page for your free indicator and training video!";
                     
+                    // Show the custom modal instead of using the forbidden alert()
                     customModal.classList.remove('hidden');
                     customModal.classList.add('flex');
                 });
@@ -507,14 +410,6 @@
                     customModal.classList.remove('flex');
                 }
             });
-
-            // --- Real-Time Data Fetching Logic ---
-            
-            // Initial data fetch
-            fetchStockData();
-
-            // Set up recurring data refresh
-            setInterval(fetchStockData, REFRESH_INTERVAL_MS);
         });
     </script>
 </body>
