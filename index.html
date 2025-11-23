@@ -137,7 +137,7 @@
                 </div>
             </div>
             
-            <nav class="flex w-full justify-center space-x-6 text-sm pt-2 overflow-x-auto whitespace-nowrap">
+            <nav class="flex w-full justify-center space-x-6 text-sm pt-2 overflow-x-auto whitespace-normal flex-wrap gap-2">
                 <a href="#" class="text-blue-400 font-semibold border-b-2 border-blue-400 pb-1">Dashboard</a>
                 <a href="#" class="text-gray-400 hover:text-blue-300">Markets</a>
                 <a href="#" class="text-gray-400 hover:text-blue-300">Portfolio</a>
@@ -152,9 +152,9 @@
             <main class="lg:col-span-9">
                 <div class="bg-gray-950 p-4 rounded-xl shadow-lg h-full min-h-[400px] flex flex-col">
                     
-                    <div class="flex justify-between items-center pb-3 border-b border-gray-700">
-                        <h2 class="text-xl font-bold text-blue-400">NASDAQ: TSLA</h2>
-                        <div class="flex items-center space-x-4 text-sm">
+                    <div class="flex flex-col sm:flex-row justify-between sm:items-center pb-3 border-b border-gray-700">
+                        <h2 class="text-xl font-bold text-blue-400 mb-2 sm:mb-0">NASDAQ: TSLA</h2>
+                        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
                             <span class="text-gray-400">Price: <span class="text-green-400 font-semibold">$245.85</span></span>
                             <span class="text-gray-400">Change: <span class="text-green-400 font-semibold">+7.40 (+3.10%)</span></span>
                             <span class="text-gray-400">Volume: <span class="text-gray-50">$15.2M</span></span>
@@ -172,7 +172,7 @@
 
                     <div class="flex-grow relative mt-2 chart-grid rounded-lg overflow-hidden">
                         
-                        <div class="absolute top-2 left-1/2 -translate-x-1/2 bg-yellow-900 border border-yellow-500 text-yellow-300 px-3 py-1 text-xs rounded-full shadow-lg whitespace-nowrap">
+                        <div class="absolute top-2 left-1/2 -translate-x-1/2 bg-yellow-900 border border-yellow-500 text-yellow-300 px-3 py-1 text-xs rounded-full shadow-lg text-center">
                             <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
                             Tells you when the trend is most likely to be bullish or bearish, and the precise entry
                         </div>
