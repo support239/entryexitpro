@@ -54,22 +54,29 @@
     <!-- Main Dashboard Container -->
     <div class="max-w-7xl mx-auto bg-gray-900 rounded-xl shadow-2xl p-4 md:p-6">
 
-        <!-- Header/Branding (Trust and Stability: Blue) -->
-        <header class="flex justify-between items-center pb-4 border-b border-gray-700 mb-6">
-            <div class="flex items-center space-x-3">
-                <svg class="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
-                <h1 class="text-2xl font-bold text-gray-50">ALPHA TRADE PRO</h1>
+        <!-- Header/Branding (Trust and Stability: Blue) - MODIFIED -->
+        <header class="pb-4 border-b border-gray-700 mb-6">
+            
+            <!-- Top Row: Logo/Title and TRADE Button -->
+            <div class="flex justify-between items-center mb-4">
+                <div class="flex items-center space-x-3">
+                    <svg class="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                    <h1 class="text-2xl font-bold text-gray-50">ALPHA TRADE PRO</h1>
+                </div>
+                <button id="tradeButton" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-200">
+                    TRADE
+                </button>
             </div>
-            <nav class="hidden md:flex space-x-6 text-sm">
+            
+            <!-- Navigation Links below H1 (Now always visible and full width) -->
+            <nav class="flex w-full space-x-6 text-sm pt-2 overflow-x-auto whitespace-nowrap">
                 <a href="#" class="text-blue-400 font-semibold border-b-2 border-blue-400 pb-1">Dashboard</a>
                 <a href="#" class="text-gray-400 hover:text-blue-300">Markets</a>
                 <a href="#" class="text-gray-400 hover:text-blue-300">Portfolio</a>
                 <a href="#" class="text-gray-400 hover:text-blue-300">News</a>
                 <a href="#" class="text-gray-400 hover:text-blue-300">Academy</a>
             </nav>
-            <button id="tradeButton" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-200">
-                TRADE
-            </button>
+            
         </header>
 
         <!-- Main Content Grid -->
@@ -280,7 +287,7 @@
                 // Show the custom modal instead of using the forbidden alert()
                 modalMessage.textContent = "Initiating Trade Sequence for NASDAQ: TSLA. Please enter order details in the pop-up panel.";
                 customModal.classList.remove('hidden');
-                customModal.classList.add('flex'); 
+                customModal.classList.add('flex');
             });
 
             // Handle modal close button click
