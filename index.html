@@ -1,12 +1,302 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Website</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha Trade Pro Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Import Inter font from Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1e293b; /* Slate-800 for page background */
+        }
+
+        /* Custom scrollbar for dark mode */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #475569; /* Slate-600 */
+            border-radius: 4px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background-color: #0f172a; /* Slate-900 */
+        }
+
+        /* Specific styles for the mock chart grid lines */
+        .chart-grid {
+            background-color: #1e293b; /* Dark Graphite for charting area */
+            background-image: linear-gradient(to right, #334155 1px, transparent 1px),
+                              linear-gradient(to bottom, #334155 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        /* Custom colors for the chart elements based on the prompt's alternative scheme */
+        /* Bullish: Orange-500 */
+        .bullish-candle {
+            fill: #f97316; /* Orange-500 */
+            stroke: #ea580c; /* Orange-600 */
+        }
+        /* Bearish: Cyan-400 */
+        .bearish-candle {
+            fill: #22d3ee; /* Cyan-400 */
+            stroke: #06b6d4; /* Cyan-500 */
+        }
+    </style>
 </head>
-<body>
-  <h1>Guaranteed Consistent Trading Results Or You Don’t Pay</h1>
-  <p>This is my first web page.</p>
+<body class="min-h-screen p-4 md:p-6 text-gray-100 antialiased">
+
+    <!-- Main Dashboard Container -->
+    <div class="max-w-7xl mx-auto bg-gray-900 rounded-xl shadow-2xl p-4 md:p-6">
+
+        <!-- Header/Branding (Trust and Stability: Blue) -->
+        <header class="flex justify-between items-center pb-4 border-b border-gray-700 mb-6">
+            <div class="flex items-center space-x-3">
+                <svg class="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                <h1 class="text-2xl font-bold text-gray-50">ALPHA TRADE PRO</h1>
+            </div>
+            <nav class="hidden md:flex space-x-6 text-sm">
+                <a href="#" class="text-blue-400 font-semibold border-b-2 border-blue-400 pb-1">Dashboard</a>
+                <a href="#" class="text-gray-400 hover:text-blue-300">Markets</a>
+                <a href="#" class="text-gray-400 hover:text-blue-300">Portfolio</a>
+                <a href="#" class="text-gray-400 hover:text-blue-300">News</a>
+                <a href="#" class="text-gray-400 hover:text-blue-300">Academy</a>
+            </nav>
+            <button id="tradeButton" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-200">
+                TRADE
+            </button>
+        </header>
+
+        <!-- Main Content Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+            <!-- 1. Left Sidebar: Watchlist (Authority/Focus: Black/Navy Text) -->
+            <aside class="lg:col-span-3 bg-gray-950 p-4 rounded-lg shadow-inner flex flex-col h-full max-h-[80vh]">
+                <h2 class="text-lg font-semibold mb-3 text-gray-50">Watchlist</h2>
+                <div class="flex items-center mb-3 border-b border-gray-700 pb-2">
+                    <input type="text" placeholder="Search Symbols..." class="w-full bg-gray-800 text-gray-100 rounded-lg p-2 text-sm focus:ring-blue-500 focus:border-blue-500 border-none">
+                </div>
+                
+                <ul id="watchlist" class="space-y-3 text-sm custom-scrollbar overflow-y-auto">
+                    <!-- Stock items -->
+                    <li class="flex justify-between items-center py-1 hover:bg-gray-800 rounded-md px-2 cursor-pointer">
+                        <div><span class="font-bold">GOOGL</span> <span class="text-gray-500">Alphabet Inc.</span></div>
+                        <div class="text-green-400 font-medium">+1.52%</div>
+                    </li>
+                    <li class="flex justify-between items-center py-1 hover:bg-gray-800 rounded-md px-2 cursor-pointer">
+                        <div><span class="font-bold">AAPL</span> <span class="text-gray-500">Apple Inc.</span></div>
+                        <div class="text-red-400 font-medium">-0.88%</div>
+                    </li>
+                    <li class="flex justify-between items-center py-1 hover:bg-gray-800 rounded-md px-2 cursor-pointer">
+                        <div><span class="font-bold">TSLA</span> <span class="text-gray-500">Tesla</span></div>
+                        <div class="text-green-400 font-medium">+3.10%</div>
+                    </li>
+                    <li class="flex justify-between items-center py-1 hover:bg-gray-800 rounded-md px-2 cursor-pointer">
+                        <div><span class="font-bold">AMZN</span> <span class="text-gray-500">Amazon.com</span></div>
+                        <div class="text-green-400 font-medium">+0.75%</div>
+                    </li>
+                    <li class="flex justify-between items-center py-1 hover:bg-gray-800 rounded-md px-2 cursor-pointer">
+                        <div><span class="font-bold">MSFT</span> <span class="text-gray-500">Microsoft Corp.</span></div>
+                        <div class="text-red-400 font-medium">-2.15%</div>
+                    </li>
+                    <!-- Repeat for more data -->
+                    <li class="flex justify-between items-center py-1 hover:bg-gray-800 rounded-md px-2 cursor-pointer">
+                        <div><span class="font-bold">NVDA</span> <span class="text-gray-500">NVIDIA Corp.</span></div>
+                        <div class="text-green-400 font-medium">+4.92%</div>
+                    </li>
+                    <li class="flex justify-between items-center py-1 hover:bg-gray-800 rounded-md px-2 cursor-pointer">
+                        <div><span class="font-bold">META</span> <span class="text-gray-500">Meta Platforms</span></div>
+                        <div class="text-red-400 font-medium">-0.12%</div>
+                    </li>
+                    <li class="flex justify-between items-center py-1 hover:bg-gray-800 rounded-md px-2 cursor-pointer">
+                        <div><span class="font-bold">JPM</span> <span class="text-gray-500">JPMorgan Chase</span></div>
+                        <div class="text-green-400 font-medium">+0.45%</div>
+                    </li>
+                    <li class="flex justify-between items-center py-1 hover:bg-gray-800 rounded-md px-2 cursor-pointer">
+                        <div><span class="font-bold">NFLX</span> <span class="text-gray-500">Netflix</span></div>
+                        <div class="text-green-400 font-medium">+1.11%</div>
+                    </li>
+                    <li class="flex justify-between items-center py-1 hover:bg-gray-800 rounded-md px-2 cursor-pointer">
+                        <div><span class="font-bold">BABA</span> <span class="text-gray-500">Alibaba Grp</span></div>
+                        <div class="text-red-400 font-medium">-1.99%</div>
+                    </li>
+                </ul>
+            </aside>
+
+            <!-- 2. Center Panel: Charting Area (Backgrounds: Shades of Gray/Graphite) -->
+            <main class="lg:col-span-6">
+                <div class="bg-gray-950 p-4 rounded-xl shadow-lg h-full min-h-[400px] flex flex-col">
+                    
+                    <!-- Instrument Header -->
+                    <div class="flex justify-between items-center pb-3 border-b border-gray-700">
+                        <h2 class="text-xl font-bold text-blue-400">NASDAQ: TSLA</h2>
+                        <div class="flex items-center space-x-4 text-sm">
+                            <span class="text-gray-400">Price: <span class="text-green-400 font-semibold">$245.85</span></span>
+                            <span class="text-gray-400">Change: <span class="text-green-400 font-semibold">+7.40 (+3.10%)</span></span>
+                            <span class="text-gray-400">Volume: <span class="text-gray-50">$15.2M</span></span>
+                        </div>
+                    </div>
+
+                    <!-- Timeframe & Tools -->
+                    <div class="flex space-x-3 text-sm py-2 text-gray-400 border-b border-gray-800">
+                        <span class="text-blue-400 font-medium cursor-pointer">1D</span>
+                        <span class="hover:text-blue-300 cursor-pointer">5D</span>
+                        <span class="hover:text-blue-300 cursor-pointer">1M</span>
+                        <span class="hover:text-blue-300 cursor-pointer">3M</span>
+                        <span class="hover:text-blue-300 cursor-pointer">1Y</span>
+                        <span class="text-yellow-400 font-medium ml-4">LIVE</span>
+                    </div>
+
+                    <!-- Chart Mock-up (Illustrative SVG with alternative colors) -->
+                    <div class="flex-grow relative mt-2 chart-grid rounded-lg overflow-hidden">
+                        
+                        <!-- Alert Indicator (Accents: Yellow/Orange) -->
+                        <div class="absolute top-2 left-1/2 -translate-x-1/2 bg-yellow-900 border border-yellow-500 text-yellow-300 px-3 py-1 text-xs rounded-full shadow-lg">
+                            <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                            CRITICAL ALERT: High Volatility
+                        </div>
+
+                        <!-- Price Action Visual (Using SVG for mock candles) -->
+                        <svg class="w-full h-full p-2" viewBox="0 0 1000 400" preserveAspectRatio="none">
+                            <!-- Baseline (Gray) -->
+                            <line x1="0" y1="300" x2="1000" y2="300" stroke="#475569" stroke-width="1" stroke-dasharray="2, 2"/>
+                            
+                            <!-- Mock Candlesticks: Bullish (Orange) and Bearish (Cyan) -->
+                            <!-- Candle structure: x, y (top), width, height -->
+                            
+                            <!-- Bearish (Cyan) -->
+                            <rect class="bearish-candle" x="50" y="250" width="10" height="50"></rect>
+                            <rect class="bearish-candle" x="100" y="260" width="10" height="40"></rect>
+                            
+                            <!-- Bullish (Orange) -->
+                            <rect class="bullish-candle" x="150" y="270" width="10" height="30"></rect>
+                            <rect class="bullish-candle" x="200" y="200" width="10" height="100"></rect>
+                            <rect class="bullish-candle" x="250" y="240" width="10" height="60"></rect>
+                            
+                            <!-- Bearish (Cyan) -->
+                            <rect class="bearish-candle" x="300" y="220" width="10" height="80"></rect>
+                            <rect class="bearish-candle" x="350" y="280" width="10" height="20"></rect>
+                            
+                            <!-- Bullish (Orange) -->
+                            <rect class="bullish-candle" x="400" y="180" width="10" height="120"></rect>
+                            <rect class="bullish-candle" x="450" y="150" width="10" height="150"></rect>
+                            <rect class="bullish-candle" x="500" y="160" width="10" height="140"></rect>
+                            
+                            <!-- Bearish (Cyan) -->
+                            <rect class="bearish-candle" x="550" y="180" width="10" height="80"></rect>
+                            <rect class="bearish-candle" x="600" y="210" width="10" height="70"></rect>
+                            
+                            <!-- Bullish (Orange) -->
+                            <rect class="bullish-candle" x="650" y="150" width="10" height="150"></rect>
+                            <rect class="bullish-candle" x="700" y="100" width="10" height="200"></rect>
+                            <rect class="bullish-candle" x="750" y="120" width="10" height="180"></rect>
+
+                            <!-- Bearish (Cyan) -->
+                            <rect class="bearish-candle" x="800" y="150" width="10" height="100"></rect>
+                            <rect class="bearish-candle" x="850" y="200" width="10" height="50"></rect>
+                            <rect class="bullish-candle" x="900" y="180" width="10" height="120"></rect>
+
+                            <!-- Example Moving Average Line (Teal/Muted) -->
+                            <polyline fill="none" stroke="#0d9488" stroke-width="2" points="70,275 120,285 170,280 220,240 270,260 320,240 370,290 420,260 470,220 520,230 570,250 620,260 670,210 720,180 770,180 820,190 870,230 920,250" />
+                        </svg>
+
+                    </div>
+                </div>
+            </main>
+
+            <!-- 3. Right Sidebar: Order/News/Data -->
+            <aside class="lg:col-span-3 space-y-6">
+
+                <!-- Trade Panel (Authority/Focus: Black/Navy) -->
+                <div class="bg-gray-950 p-4 rounded-lg shadow-inner">
+                    <h2 class="text-lg font-semibold mb-3 text-gray-50">Active Orders</h2>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li class="flex justify-between">
+                            <span class="text-blue-400">Limit Buy $240.00</span>
+                            <span class="text-yellow-400">Pending</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span class="text-red-400">Stop Loss $230.50</span>
+                            <span class="text-yellow-400">Pending</span>
+                        </li>
+                    </ul>
+                    <button class="w-full bg-blue-700 hover:bg-blue-800 text-white font-medium py-2 mt-4 rounded-lg transition duration-200">
+                        New Order
+                    </button>
+                </div>
+
+                <!-- News/Alerts Panel (Accents: Orange/Yellow) -->
+                <div class="bg-gray-950 p-4 rounded-lg shadow-inner custom-scrollbar h-64 overflow-y-auto">
+                    <h2 class="text-lg font-semibold mb-3 text-gray-50">Market News</h2>
+                    <div class="space-y-3 text-xs">
+                        <p class="border-l-4 border-yellow-500 pl-2">
+                            <span class="text-yellow-400 font-semibold">ALERT:</span> TSLA CEO announces new vehicle platform.
+                            <span class="block text-gray-500 mt-1">5 min ago</span>
+                        </p>
+                        <p class="border-l-4 border-blue-500 pl-2">
+                            <span class="text-blue-400 font-semibold">REPORT:</span> Analysts revise Q4 earnings forecasts upwards.
+                            <span class="block text-gray-500 mt-1">15 min ago</span>
+                        </p>
+                        <p class="border-l-4 border-red-500 pl-2">
+                            <span class="text-red-400 font-semibold">CAUTION:</span> General market sentiment turning bearish.
+                            <span class="block text-gray-500 mt-1">1 hour ago</span>
+                        </p>
+                    </div>
+                </div>
+
+            </aside>
+
+        </div>
+    </div>
+
+    <!-- Custom Modal for Alerts (Instead of alert()) -->
+    <div id="customModal" class="fixed inset-0 bg-black bg-opacity-70 hidden justify-center items-center z-50">
+        <div class="bg-gray-800 p-6 rounded-xl shadow-2xl max-w-sm w-full border-t-4 border-blue-500">
+            <h3 class="text-xl font-bold mb-3 text-blue-400">Trade Action Required</h3>
+            <p id="modalMessage" class="text-gray-200 mb-4">You clicked the TRADE button. This would open your trade entry form.</p>
+            <button id="closeModal" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-lg transition duration-200">
+                OK, Got It
+            </button>
+        </div>
+    </div>
+
+
+    <script>
+        // --- Custom JavaScript for Functionality ---
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const tradeButton = document.getElementById('tradeButton');
+            const customModal = document.getElementById('customModal');
+            const closeModal = document.getElementById('closeModal');
+            const modalMessage = document.getElementById('modalMessage');
+
+            // Handle the TRADE button click
+            tradeButton.addEventListener('click', () => {
+                // Show the custom modal instead of using the forbidden alert()
+                modalMessage.textContent = "Initiating Trade Sequence for NASDAQ: TSLA. Please enter order details in the pop-up panel.";
+                customModal.classList.remove('hidden');
+                customModal.classList.add('flex');
+            });
+
+            // Handle modal close button click
+            closeModal.addEventListener('click', () => {
+                customModal.classList.add('hidden');
+                customModal.classList.remove('flex');
+            });
+
+            // Handle closing modal by clicking outside
+            customModal.addEventListener('click', (e) => {
+                if (e.target === customModal) {
+                    customModal.classList.add('hidden');
+                    customModal.classList.remove('flex');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
