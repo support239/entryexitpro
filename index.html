@@ -353,7 +353,33 @@
                 </button>
             </form>
 
-        </div>
+            <div id="successState" class="space-y-4 hidden">
+                <h4 class="text-lg font-semibold text-gray-50 text-center">Your Free Download is Ready!</h4>
+                
+                <ul class="space-y-2 text-sm text-gray-300 border border-gray-700 p-3 rounded-lg bg-gray-900">
+                    <li class="flex justify-between items-start">
+                        <span class="text-gray-400">Indicator Name:</span>
+                        <span class="text-blue-400 font-medium text-right">Precision Entry Trigger</span>
+                    </li>
+                    <li class="flex justify-between items-start">
+                        <span class="text-gray-400">File Size:</span>
+                        <span class="text-green-400 font-medium text-right">1.2 MB (Zipped)</span>
+                    </li>
+                    <li class="flex justify-between items-start">
+                        <span class="text-gray-400">Video Duration:</span>
+                        <span class="text-gray-50 font-medium text-right">8:45 minutes</span>
+                    </li>
+                </ul>
+
+                <p class="text-sm text-yellow-400 pt-2 text-center">
+                    Click "Download Now" to get the file. A permanent link has also been sent to your email!
+                </p>
+                
+                <button type="button" id="downloadButtonFinal" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 rounded-lg transition duration-200">
+                    Download Now
+                </button>
+            </div>
+            </div>
     </div>
     
     <footer class="mt-8 mb-4">
@@ -374,19 +400,20 @@
             const openFormButton = document.getElementById('openFormButton');
             const customModal = document.getElementById('customModal');
             const indicatorForm = document.getElementById('indicatorForm');
-            const modalMessage = document.getElementById('modalMessage');
             const submitFormButton = document.getElementById('submitFormButton');
             const modalTitle = document.getElementById('modalTitle');
-
-            // --- Function to open the modal/form ---
+            // New targets for the success view
+            const successState = document.getElementById('successState');
+            const downloadButtonFinal = document.getElementById('downloadButtonFinal');
+            
+            // --- Function to reset and open the modal/form ---
             if (openFormButton) {
                 openFormButton.addEventListener('click', () => {
                     // Reset modal state
-                    indicatorForm.classList.remove('hidden');
-                    submitFormButton.classList.remove('hidden');
+                    indicatorForm.classList.remove('hidden'); // Show form
+                    successState.classList.add('hidden'); // Hide success state
                     submitFormButton.textContent = "Download Now";
                     submitFormButton.disabled = false;
-                    modalMessage.classList.add('hidden');
                     modalTitle.textContent = "Get Your Free Indicator";
                     indicatorForm.reset(); 
                     
@@ -396,75 +423,78 @@
                 });
             }
 
-            // --- Function to handle form submission (MailerLite POST integration) ---
+            // --- Function to handle form submission (Async fetch re-implemented) ---
             indicatorForm.addEventListener('submit', async (e) => {
-                e.preventDefault(); // Prevent default form submission/page reload
+                e.preventDefault(); 
 
-                // Get form values
                 const name = document.getElementById('name').value.trim();
                 const email = document.getElementById('email').value.trim();
 
-                submitFormButton.textContent = "Sending...";
+                // 1. Show loading state immediately
+                submitFormButton.textContent = "Submitting...";
                 submitFormButton.disabled = true;
-                modalMessage.classList.add('hidden'); // Hide any previous message
 
-                // Prepare data in URL-encoded format for the MailerLite endpoint
+                // Prepare data for MailerLite (URL-encoded format)
                 const formData = new URLSearchParams();
-                formData.append('fields[name]', name); // MailerLite expects 'fields[name]' for name
-                formData.append('fields[email]', email); // MailerLite expects 'fields[email]' for email
-                formData.append('ml-submit', '1'); // Often a required parameter for MailerLite forms
+                formData.append('fields[name]', name); 
+                formData.append('fields[email]', email); 
+                formData.append('ml-submit', '1'); 
                 
                 try {
+                    // 2. AWAIT the asynchronous network request to ensure it completes
                     const response = await fetch(BACKEND_ENDPOINT, {
                         method: 'POST',
-                        // Note: We intentionally DO NOT set Content-Type, letting the browser use 
-                        // 'application/x-www-form-urlencoded' automatically with URLSearchParams.
-                        body: formData, // Send data as URL-encoded form data
+                        body: formData,
+                        // If MailerLite requires a JSONP-style response (which the URL suggests), 
+                        // you might need to handle CORS issues or use a server-side proxy.
+                        // For a modern browser environment, we proceed with standard fetch.
                     });
 
-                    // MailerLite typically returns a 200 even on successful form submission.
+                    // Check for successful HTTP status (200-299)
                     if (response.ok) {
-                        // Success state
+                        // 3. Success State: Hide form, show specs/download button
                         indicatorForm.classList.add('hidden');
-                        submitFormButton.classList.add('hidden'); // Hide button on final success
+                        successState.classList.remove('hidden'); // Show the success state
+                        modalTitle.textContent = "Submission Complete!";
                         
-                        // We check the response text for "success" in case MailerLite sends a specific JSONP-style response
-                        const responseText = await response.text();
-                        console.log("MailerLite Response:", responseText); // Log response for debugging
-
-                        modalMessage.textContent = "Success! Your download link has been sent to your email.";
-                        modalMessage.classList.remove('hidden');
-                        modalTitle.textContent = "Success!";
                     } else {
-                        // Server returned an error (4xx or 5xx)
-                        const errorText = await response.text();
-                        console.error(`Server Error (${response.status}):`, errorText);
-
+                        // 4. Handle Server Error
+                        console.error(`Submission failed. Status: ${response.status}`);
                         modalTitle.textContent = "Submission Failed";
-                        modalMessage.textContent = `Sorry, the submission failed. Please check your email and try again.`;
-                        modalMessage.classList.remove('hidden');
+                        alert("There was an error submitting your form. Please try again or check your email.");
                         
-                        // Keep the form visible for the user to correct/try again
-                        indicatorForm.classList.remove('hidden');
-                    }
-
-                } catch (error) {
-                    // Network error (e.g., CORS, connection refused)
-                    console.error('Network Error:', error);
-                    modalTitle.textContent = "Network Error";
-                    modalMessage.textContent = "Could not connect to the server. Check your internet connection.";
-                    modalMessage.classList.remove('hidden');
-                    
-                    // Keep the form visible 
-                    indicatorForm.classList.remove('hidden');
-
-                } finally {
-                    // Reset button state unless it was a final success
-                    if (!indicatorForm.classList.contains('hidden')) {
+                        // Re-enable button on error
                         submitFormButton.textContent = "Download Now";
                         submitFormButton.disabled = false;
                     }
+
+                } catch (error) {
+                    // 5. Handle Network/CORS Error
+                    console.error('Network Error:', error);
+                    modalTitle.textContent = "Network Error";
+                    alert("Could not connect to the server. Please check your connection.");
+                    
+                    // Re-enable button on network error
+                    submitFormButton.textContent = "Download Now";
+                    submitFormButton.disabled = false;
                 }
+            });
+
+            // --- Handler for the final 'Download Now' button in the success state ---
+            // This button's primary job is to close the modal after the subscription is confirmed.
+            downloadButtonFinal.addEventListener('click', () => {
+                // In a real application, this would redirect to a specific download page
+                // or start a file download. For this example, it closes the modal.
+                customModal.classList.add('hidden');
+                customModal.classList.remove('flex');
+                
+                // Reset internal state (mimicking the close logic)
+                indicatorForm.classList.remove('hidden');
+                successState.classList.add('hidden'); 
+                submitFormButton.textContent = "Download Now";
+                submitFormButton.disabled = false;
+                modalTitle.textContent = "Get Your Free Indicator";
+                indicatorForm.reset();
             });
 
 
@@ -477,10 +507,9 @@
                     
                     // Reset state when closing the modal
                     indicatorForm.classList.remove('hidden');
-                    submitFormButton.classList.remove('hidden');
+                    successState.classList.add('hidden');
                     submitFormButton.textContent = "Download Now";
                     submitFormButton.disabled = false;
-                    modalMessage.classList.add('hidden');
                     modalTitle.textContent = "Get Your Free Indicator";
                     indicatorForm.reset();
                 }
