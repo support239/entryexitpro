@@ -231,20 +231,27 @@
 
                 <!-- Trade Panel (Authority/Focus: Black/Navy) -->
                 <div class="bg-gray-950 p-4 rounded-lg shadow-inner">
-                    <h2 class="text-lg font-semibold mb-3 text-gray-50">Active Orders</h2>
+                    <!-- HEADING: Free indicator and Short training video on how to use it -->
+                    <h2 class="text-lg font-semibold mb-3 text-gray-50"> Free indicator and Short training video on how to use it</h2>
+                    
+                    <!-- Content (Placeholder for indicator/video details) -->
                     <ul class="space-y-2 text-sm text-gray-300">
-                        <li class="flex justify-between">
-                            <span class="text-blue-400">Limit Buy $240.00</span>
-                            <span class="text-yellow-400">Pending</span>
+                        <li class="flex justify-between items-start">
+                            <span class="text-gray-400">Indicator Name:</span>
+                            <span class="text-blue-400 font-medium text-right">Alpha Trend Oscillator</span>
                         </li>
-                        <li class="flex justify-between">
-                            <span class="text-red-400">Stop Loss $230.50</span>
-                            <span class="text-yellow-400">Pending</span>
+                        <li class="flex justify-between items-start">
+                            <span class="text-gray-400">File Size:</span>
+                            <span class="text-green-400 font-medium text-right">1.2 MB (Zipped)</span>
+                        </li>
+                        <li class="flex justify-between items-start">
+                            <span class="text-gray-400">Video Duration:</span>
+                            <span class="text-gray-50 font-medium text-right">8:45 minutes</span>
                         </li>
                     </ul>
-                    <!-- Since the TRADE button was removed from the header, this button now acts as the primary Call to Action -->
+                    <!-- BUTTON UPDATED HERE -->
                     <button class="w-full bg-blue-700 hover:bg-blue-800 text-white font-medium py-2 mt-4 rounded-lg transition duration-200" id="newOrderButton">
-                        New Order
+                        Get Indicator
                     </button>
                 </div>
 
@@ -275,7 +282,8 @@
     <!-- Custom Modal for Alerts (Instead of alert()) -->
     <div id="customModal" class="fixed inset-0 bg-black bg-opacity-70 hidden justify-center items-center z-50">
         <div class="bg-gray-800 p-6 rounded-xl shadow-2xl max-w-sm w-full border-t-4 border-blue-500">
-            <h3 class="text-xl font-bold mb-3 text-blue-400">Trade Action Required</h3>
+            <h3 class="text-xl font-bold mb-3 text-blue-400">Action Confirmed</h3>
+            <!-- MODAL MESSAGE UPDATED IN JS -->
             <p id="modalMessage" class="text-gray-200 mb-4">You clicked the TRADE button. This would open your trade entry form.</p>
             <button id="closeModal" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-lg transition duration-200">
                 OK, Got It
@@ -288,17 +296,20 @@
         // --- Custom JavaScript for Functionality ---
 
         document.addEventListener('DOMContentLoaded', () => {
-            // Note: tradeButton is removed, now targeting the New Order button in the Trade Panel
+            // Target the Get Indicator button
             const newOrderButton = document.getElementById('newOrderButton');
             const customModal = document.getElementById('customModal');
             const closeModal = document.getElementById('closeModal');
             const modalMessage = document.getElementById('modalMessage');
 
-            // Handle the New Order button click
+            // Handle the Get Indicator button click
             if (newOrderButton) {
                 newOrderButton.addEventListener('click', () => {
+                    // Update modal title and message for the new 'Get Indicator' action
+                    document.querySelector('#customModal h3').textContent = "Download Initiated";
+                    modalMessage.textContent = "Redirecting to the download page for your free indicator and training video!";
+                    
                     // Show the custom modal instead of using the forbidden alert()
-                    modalMessage.textContent = "Initiating New Order for NASDAQ: TSLA. Enter order details in the trade form.";
                     customModal.classList.remove('hidden');
                     customModal.classList.add('flex');
                 });
