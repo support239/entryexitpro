@@ -59,6 +59,7 @@
             white-space: nowrap;
             display: inline-block;
             /* Default (Mobile First): Fast speed */
+            /* The marquee content is duplicated three times (300% width). We are scrolling 2/3 (two sets) before resetting. */
             animation: marquee-scroll 15s linear infinite; 
         }
 
@@ -77,11 +78,12 @@
             padding: 0 2.5rem; 
         }
 
-        /* Keyframes for continuous scroll from right to left (three times duplication requires -33.33333%) */
+        /* Keyframes for continuous scroll from right to left (moves by 2/3 of the total content before resetting) */
         @keyframes marquee-scroll {
             /* Start at 0% (fully visible) */
             0% { transform: translateX(0%); }
-            100% { transform: translateX(-33.33333%); } 
+            /* Move by 2/3 of the total width, showing two full sets of content before looping. 2/3 = 66.66666% */
+            100% { transform: translateX(-66.66666%); } 
         }
     </style>
 </head>
@@ -272,7 +274,7 @@
                     <ul class="space-y-3 p-3 bg-gray-700/50 rounded-lg">
                         <li class="flex items-start"><svg class="w-4 h-4 text-green-400 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>You’ll know if it's a real breakout or a fake out.</li>
                         <li class="flex items-start"><svg class="w-4 h-4 text-green-400 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>You'll know how to avoid getting in too early.</li>
-                        <li class="flex items-start"><svg class="w-4 h-4 text-green-400 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.3rg/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>You'll know how to avoid getting in too late.</li>
+                        <li class="flex items-start"><svg class="w-4 h-4 text-green-400 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>You'll know how to avoid getting in too late.</li>
                         <li class="flex items-start"><svg class="w-4 h-4 text-green-400 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>You'll know how to keep from being manipulated.</li>
                         <li class="flex items-start"><svg class="w-4 h-4 text-green-400 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>You'll know when to take a profit.</li>
                     </ul>
