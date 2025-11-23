@@ -170,9 +170,9 @@
 
                     <div class="flex-grow relative mt-2 chart-grid rounded-lg overflow-hidden">
                         
-                        <div class="absolute top-2 left-1/2 -translate-x-1/2 bg-yellow-900 border border-yellow-500 text-yellow-300 px-3 py-1 text-xs rounded-full shadow-lg">
+                        <div class="absolute top-2 left-1/2 -translate-x-1/2 bg-yellow-900 border border-yellow-500 text-yellow-300 px-3 py-1 text-xs rounded-full shadow-lg whitespace-nowrap">
                             <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                            CRITICAL ALERT: High Volatility
+                            Tells you when the trend is most likely to be bullish or bearish, and the precise entry
                         </div>
 
                         <svg class="w-full h-full p-2" viewBox="0 0 1000 400" preserveAspectRatio="none">
@@ -203,7 +203,23 @@
                             <rect class="bearish-candle" x="850" y="200" width="10" height="50"></rect>
                             <rect class="bullish-candle" x="900" y="180" width="10" height="120"></rect>
 
-                            <polyline fill="none" stroke="#0d9488" stroke-width="2" points="70,275 120,285 170,280 220,240 270,260 320,240 370,290 420,260 470,220 520,230 570,250 620,260 670,210 720,180 770,180 820,190 870,230 920,250" />
+                            <line x1="70" y1="275" x2="120" y2="285" stroke="#f87171" stroke-width="2" />
+                            <line x1="120" y1="285" x2="170" y2="280" stroke="#4ade80" stroke-width="2" />
+                            <line x1="170" y1="280" x2="220" y2="240" stroke="#4ade80" stroke-width="2" />
+                            <line x1="220" y1="240" x2="270" y2="260" stroke="#f87171" stroke-width="2" />
+                            <line x1="270" y1="260" x2="320" y2="240" stroke="#4ade80" stroke-width="2" />
+                            <line x1="320" y1="240" x2="370" y2="290" stroke="#f87171" stroke-width="2" />
+                            <line x1="370" y1="290" x2="420" y2="260" stroke="#4ade80" stroke-width="2" />
+                            <line x1="420" y1="260" x2="470" y2="220" stroke="#4ade80" stroke-width="2" />
+                            <line x1="470" y1="220" x2="520" y2="230" stroke="#f87171" stroke-width="2" />
+                            <line x1="520" y1="230" x2="570" y2="250" stroke="#f87171" stroke-width="2" />
+                            <line x1="570" y1="250" x2="620" y2="260" stroke="#f87171" stroke-width="2" />
+                            <line x1="620" y1="260" x2="670" y2="210" stroke="#4ade80" stroke-width="2" />
+                            <line x1="670" y1="210" x2="720" y2="180" stroke="#4ade80" stroke-width="2" />
+                            <line x1="720" y1="180" x2="770" y2="180" stroke="#4ade80" stroke-width="2" />
+                            <line x1="770" y1="180" x2="820" y2="190" stroke="#f87171" stroke-width="2" />
+                            <line x1="820" y1="190" x2="870" y2="230" stroke="#f87171" stroke-width="2" />
+                            <line x1="870" y1="230" x2="920" y2="250" stroke="#f87171" stroke-width="2" />
                         </svg>
 
                     </div>
@@ -256,7 +272,7 @@
                     <ul class="space-y-3 p-3 bg-gray-700/50 rounded-lg">
                         <li class="flex items-start"><svg class="w-4 h-4 text-green-400 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>You’ll know if it's a real breakout or a fake out.</li>
                         <li class="flex items-start"><svg class="w-4 h-4 text-green-400 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>You'll know how to avoid getting in too early.</li>
-                        <li class="flex items-start"><svg class="w-4 h-4 text-green-400 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>You'll know how to avoid getting in too late.</li>
+                        <li class="flex items-start"><svg class="w-4 h-4 text-green-400 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.3rg/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>You'll know how to avoid getting in too late.</li>
                         <li class="flex items-start"><svg class="w-4 h-4 text-green-400 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>You'll know how to keep from being manipulated.</li>
                         <li class="flex items-start"><svg class="w-4 h-4 text-green-400 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>You'll know when to take a profit.</li>
                     </ul>
@@ -291,7 +307,7 @@
                 <div class="bg-gray-700/50 p-6 rounded-xl shadow-xl border border-gray-600">
                     <h3 class="text-xl font-semibold text-gray-50 mb-3">Testimonial</h3>
                     <p class="text-gray-300 italic border-l-4 border-yellow-500 pl-3">
-                        "I saw you getting results... I've seen your **live** trades and it's obviously working."
+                        "I saw you getting results... I've seen your live trades and it's obviously working."
                     </p>
                     <p class="text-sm text-gray-400 mt-2 font-medium">- Julius G. (Verified Trader)</p>
                 </div>
