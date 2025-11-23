@@ -239,7 +239,7 @@
             <aside class="lg:col-span-3 space-y-6">
 
                 <div class="bg-gray-950 p-4 rounded-lg shadow-inner">
-                    <h2 class="text-lg font-semibold mb-3 text-gray-50"> *Free indicator and Short training video on how to use it</h2>
+                    <h2 class="text-lg font-semibold mb-3 text-gray-50"> Free indicator and Short training video on how to use it</h2>
                     
                     <ul class="space-y-2 text-sm text-gray-300">
                         <li class="flex justify-between items-start">
@@ -367,10 +367,10 @@
         // --- Custom JavaScript for Functionality ---
 
         document.addEventListener('DOMContentLoaded', () => {
-            // *** IMPORTANT: REPLACE THIS PLACEHOLDER URL WITH YOUR ACTUAL BACKEND ENDPOINT ***
-            const BACKEND_ENDPOINT = 'https://your-domain.com/api/save-contact'; 
+            // *** MAILDERLITE ENDPOINT: Set as requested by the user ***
+            const BACKEND_ENDPOINT = 'https://assets.mailerlite.com/jsonp/1939850/forms/171900157729703873/subscribe'; 
 
-            // Target the new button to open the form
+            // Target DOM elements
             const openFormButton = document.getElementById('openFormButton');
             const customModal = document.getElementById('customModal');
             const indicatorForm = document.getElementById('indicatorForm');
@@ -396,7 +396,7 @@
                 });
             }
 
-            // --- Function to handle form submission (Using Fetch/AJAX for backend integration) ---
+            // --- Function to handle form submission (MailerLite POST integration) ---
             indicatorForm.addEventListener('submit', async (e) => {
                 e.preventDefault(); // Prevent default form submission/page reload
 
@@ -404,52 +404,44 @@
                 const name = document.getElementById('name').value.trim();
                 const email = document.getElementById('email').value.trim();
 
-                // Validation/Configuration check
-                if (BACKEND_ENDPOINT.includes('your-domain.com')) {
-                    console.error("Submission blocked: Please replace the placeholder URL with your actual backend endpoint.");
-                    modalTitle.textContent = "Error!";
-                    modalMessage.textContent = "Configuration required: Please update the BACKEND_ENDPOINT in the script.";
-                    modalMessage.classList.remove('hidden');
-                    indicatorForm.classList.remove('hidden');
-                    return;
-                }
-
                 submitFormButton.textContent = "Sending...";
                 submitFormButton.disabled = true;
                 modalMessage.classList.add('hidden'); // Hide any previous message
 
+                // Prepare data in URL-encoded format for the MailerLite endpoint
+                const formData = new URLSearchParams();
+                formData.append('fields[name]', name); // MailerLite expects 'fields[name]' for name
+                formData.append('fields[email]', email); // MailerLite expects 'fields[email]' for email
+                formData.append('ml-submit', '1'); // Often a required parameter for MailerLite forms
+                
                 try {
                     const response = await fetch(BACKEND_ENDPOINT, {
                         method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Accept': 'application/json'
-                        },
-                        body: JSON.stringify({ name, email }), // Send data as JSON
+                        // Note: We intentionally DO NOT set Content-Type, letting the browser use 
+                        // 'application/x-www-form-urlencoded' automatically with URLSearchParams.
+                        body: formData, // Send data as URL-encoded form data
                     });
 
+                    // MailerLite typically returns a 200 even on successful form submission.
                     if (response.ok) {
                         // Success state
                         indicatorForm.classList.add('hidden');
                         submitFormButton.classList.add('hidden'); // Hide button on final success
                         
+                        // We check the response text for "success" in case MailerLite sends a specific JSONP-style response
+                        const responseText = await response.text();
+                        console.log("MailerLite Response:", responseText); // Log response for debugging
+
                         modalMessage.textContent = "Success! Your download link has been sent to your email.";
                         modalMessage.classList.remove('hidden');
                         modalTitle.textContent = "Success!";
                     } else {
                         // Server returned an error (4xx or 5xx)
-                        let errorMessage = 'An unexpected server error occurred. Please try again.';
-                        try {
-                            const errorData = await response.json();
-                            if (errorData.message) {
-                                errorMessage = errorData.message;
-                            }
-                        } catch (jsonError) { /* ignore json parsing error */ }
-                        
-                        console.error(`Server Error (${response.status}):`, errorMessage);
+                        const errorText = await response.text();
+                        console.error(`Server Error (${response.status}):`, errorText);
 
                         modalTitle.textContent = "Submission Failed";
-                        modalMessage.textContent = `Sorry, the submission failed: ${errorMessage}`;
+                        modalMessage.textContent = `Sorry, the submission failed. Please check your email and try again.`;
                         modalMessage.classList.remove('hidden');
                         
                         // Keep the form visible for the user to correct/try again
