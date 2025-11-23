@@ -58,16 +58,15 @@
         .marquee {
             white-space: nowrap;
             display: inline-block;
-            /* Default (Mobile First): Fast speed */
-            /* The marquee content is duplicated six times (600% width). We are scrolling 4/6 (two-thirds) before resetting. */
-            animation: marquee-scroll 15s linear infinite; 
+            /* Default (Mobile First): Adjusted for 3 repeats */
+            animation: marquee-scroll 11s linear infinite; 
         }
 
         /* Media query for Tablets and Desktops (md breakpoint in Tailwind: 768px) */
         @media (min-width: 768px) {
             .marquee {
-                /* Slower speed for larger screens */
-                animation: marquee-scroll 30s linear infinite; 
+                /* Slower speed for larger screens, adjusted for 3 repeats */
+                animation: marquee-scroll 22s linear infinite; 
             }
         }
 
@@ -82,8 +81,8 @@
         @keyframes marquee-scroll {
             /* Start at 0% (fully visible) */
             0% { transform: translateX(0%); }
-            /* Move by 4/6 (two-thirds) of the total content width. This ensures 4 full content scrolls before looping. */
-            100% { transform: translateX(-66.66666%); } 
+            /* To scroll 3 full repeats with 4 content sets, we translate by 3/4 of the total content width. */
+            100% { transform: translateX(-100%); } 
         }
     </style>
 </head>
@@ -95,26 +94,6 @@
             
             <div class="marquee-container mb-4 bg-gray-800 rounded-lg shadow-xl border border-gray-700">
                 <div class="marquee flex items-center py-2 text-sm">
-                    <div class="marquee-item"><span class="font-bold text-gray-50">GOOGL</span> <span class="text-green-400 ml-2 font-medium">+1.52%</span></div>
-                    <div class="marquee-item"><span class="font-bold text-gray-50">AAPL</span> <span class="text-red-400 ml-2 font-medium">-0.88%</span></div>
-                    <div class="marquee-item"><span class="font-bold text-gray-50">TSLA</span> <span class="text-green-400 ml-2 font-medium">+3.10%</span></div>
-                    <div class="marquee-item"><span class="font-bold text-gray-50">AMZN</span> <span class="text-green-400 ml-2 font-medium">+0.75%</span></div>
-                    <div class="marquee-item"><span class="font-bold text-gray-50">MSFT</span> <span class="text-red-400 ml-2 font-medium">-2.15%</span></div>
-                    <div class="marquee-item"><span class="font-bold text-gray-50">NVDA</span> <span class="text-green-400 ml-2 font-medium">+4.92%</span></div>
-                    <div class="marquee-item"><span class="font-bold text-gray-50">META</span> <span class="text-red-400 ml-2 font-medium">-0.12%</span></div>
-                    <div class="marquee-item"><span class="font-bold text-gray-50">JPM</span> <span class="text-green-400 ml-2 font-medium">+0.45%</span></div>
-                    <div class="marquee-item"><span class="font-bold text-gray-50">NFLX</span> <span class="text-green-400 ml-2 font-medium">+1.11%</span></div>
-                    <div class="marquee-item"><span class="font-bold text-gray-50">BABA</span> <span class="text-red-400 ml-2 font-medium">-1.99%</span></div>
-                    <div class="marquee-item"><span class="font-bold text-gray-50">GOOGL</span> <span class="text-green-400 ml-2 font-medium">+1.52%</span></div>
-                    <div class="marquee-item"><span class="font-bold text-gray-50">AAPL</span> <span class="text-red-400 ml-2 font-medium">-0.88%</span></div>
-                    <div class="marquee-item"><span class="font-bold text-gray-50">TSLA</span> <span class="text-green-400 ml-2 font-medium">+3.10%</span></div>
-                    <div class="marquee-item"><span class="font-bold text-gray-50">AMZN</span> <span class="text-green-400 ml-2 font-medium">+0.75%</span></div>
-                    <div class="marquee-item"><span class="font-bold text-gray-50">MSFT</span> <span class="text-red-400 ml-2 font-medium">-2.15%</span></div>
-                    <div class="marquee-item"><span class="font-bold text-gray-50">NVDA</span> <span class="text-green-400 ml-2 font-medium">+4.92%</span></div>
-                    <div class="marquee-item"><span class="font-bold text-gray-50">META</span> <span class="text-red-400 ml-2 font-medium">-0.12%</span></div>
-                    <div class="marquee-item"><span class="font-bold text-gray-50">JPM</span> <span class="text-green-400 ml-2 font-medium">+0.45%</span></div>
-                    <div class="marquee-item"><span class="font-bold text-gray-50">NFLX</span> <span class="text-green-400 ml-2 font-medium">+1.11%</span></div>
-                    <div class="marquee-item"><span class="font-bold text-gray-50">BABA</span> <span class="text-red-400 ml-2 font-medium">-1.99%</span></div>
                     <div class="marquee-item"><span class="font-bold text-gray-50">GOOGL</span> <span class="text-green-400 ml-2 font-medium">+1.52%</span></div>
                     <div class="marquee-item"><span class="font-bold text-gray-50">AAPL</span> <span class="text-red-400 ml-2 font-medium">-0.88%</span></div>
                     <div class="marquee-item"><span class="font-bold text-gray-50">TSLA</span> <span class="text-green-400 ml-2 font-medium">+3.10%</span></div>
