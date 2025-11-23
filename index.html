@@ -49,6 +49,34 @@
             fill: #22d3ee; /* Cyan-440 */
             stroke: #06b6d4; /* Cyan-500 */
         }
+
+        /* --- Marquee Animation Styles --- */
+        .marquee-container {
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .marquee {
+            white-space: nowrap;
+            display: inline-block;
+            /* Animation speed: 60s for a full loop */
+            animation: marquee-scroll 60s linear infinite; 
+        }
+
+        .marquee-item {
+            display: inline-flex;
+            align-items: center;
+            /* Sufficient space between symbols */
+            padding: 0 2.5rem; 
+        }
+
+        /* Keyframes for continuous scroll from right to left */
+        @keyframes marquee-scroll {
+            /* Start at 0% (fully visible) */
+            0% { transform: translateX(0%); }
+            /* End at -50% (scrolls one full set of duplicated items) */
+            100% { transform: translateX(-50%); } 
+        }
     </style>
 </head>
 <body class="min-h-screen p-4 md:p-6 text-gray-100 antialiased">
@@ -81,64 +109,45 @@
             
         </header>
 
+        <!-- New Watchlist Marquee Bar (Horizontal Scrolling) -->
+        <div class="marquee-container mb-6 bg-gray-800 rounded-lg shadow-xl border border-gray-700">
+            <div class="marquee flex items-center py-2 text-sm">
+                <!-- Watchlist Content: Duplicate the list below to ensure a smooth, looping animation -->
+                
+                <!-- START Watchlist Content Set 1 -->
+                <div class="marquee-item"><span class="font-bold text-gray-50">GOOGL</span> <span class="text-green-400 ml-2 font-medium">+1.52%</span></div>
+                <div class="marquee-item"><span class="font-bold text-gray-50">AAPL</span> <span class="text-red-400 ml-2 font-medium">-0.88%</span></div>
+                <div class="marquee-item"><span class="font-bold text-gray-50">TSLA</span> <span class="text-green-400 ml-2 font-medium">+3.10%</span></div>
+                <div class="marquee-item"><span class="font-bold text-gray-50">AMZN</span> <span class="text-green-400 ml-2 font-medium">+0.75%</span></div>
+                <div class="marquee-item"><span class="font-bold text-gray-50">MSFT</span> <span class="text-red-400 ml-2 font-medium">-2.15%</span></div>
+                <div class="marquee-item"><span class="font-bold text-gray-50">NVDA</span> <span class="text-green-400 ml-2 font-medium">+4.92%</span></div>
+                <div class="marquee-item"><span class="font-bold text-gray-50">META</span> <span class="text-red-400 ml-2 font-medium">-0.12%</span></div>
+                <div class="marquee-item"><span class="font-bold text-gray-50">JPM</span> <span class="text-green-400 ml-2 font-medium">+0.45%</span></div>
+                <div class="marquee-item"><span class="font-bold text-gray-50">NFLX</span> <span class="text-green-400 ml-2 font-medium">+1.11%</span></div>
+                <div class="marquee-item"><span class="font-bold text-gray-50">BABA</span> <span class="text-red-400 ml-2 font-medium">-1.99%</span></div>
+                <!-- END Watchlist Content Set 1 -->
+                
+                <!-- START Watchlist Content Set 2 (Duplication for seamless loop) -->
+                <div class="marquee-item"><span class="font-bold text-gray-50">GOOGL</span> <span class="text-green-400 ml-2 font-medium">+1.52%</span></div>
+                <div class="marquee-item"><span class="font-bold text-gray-50">AAPL</span> <span class="text-red-400 ml-2 font-medium">-0.88%</span></div>
+                <div class="marquee-item"><span class="font-bold text-gray-50">TSLA</span> <span class="text-green-400 ml-2 font-medium">+3.10%</span></div>
+                <div class="marquee-item"><span class="font-bold text-gray-50">AMZN</span> <span class="text-green-400 ml-2 font-medium">+0.75%</span></div>
+                <div class="marquee-item"><span class="font-bold text-gray-50">MSFT</span> <span class="text-red-400 ml-2 font-medium">-2.15%</span></div>
+                <div class="marquee-item"><span class="font-bold text-gray-50">NVDA</span> <span class="text-green-400 ml-2 font-medium">+4.92%</span></div>
+                <div class="marquee-item"><span class="font-bold text-gray-50">META</span> <span class="text-red-400 ml-2 font-medium">-0.12%</span></div>
+                <div class="marquee-item"><span class="font-bold text-gray-50">JPM</span> <span class="text-green-400 ml-2 font-medium">+0.45%</span></div>
+                <div class="marquee-item"><span class="font-bold text-gray-50">NFLX</span> <span class="text-green-400 ml-2 font-medium">+1.11%</span></div>
+                <div class="marquee-item"><span class="font-bold text-gray-50">BABA</span> <span class="text-red-400 ml-2 font-medium">-1.99%</span></div>
+                <!-- END Watchlist Content Set 2 -->
+            </div>
+        </div>
+
+
         <!-- Main Content Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
 
-            <!-- 1. Left Sidebar: Watchlist (Authority/Focus: Black/Navy Text) -->
-            <aside class="lg:col-span-3 bg-gray-950 p-4 rounded-lg shadow-inner flex flex-col h-full max-h-[80vh]">
-                <h2 class="text-lg font-semibold mb-3 text-gray-50">Watchlist</h2>
-                <div class="flex items-center mb-3 border-b border-gray-700 pb-2">
-                    <input type="text" placeholder="Search Symbols..." class="w-full bg-gray-800 text-gray-100 rounded-lg p-2 text-sm focus:ring-blue-500 focus:border-blue-500 border-none">
-                </div>
-                
-                <ul id="watchlist" class="space-y-3 text-sm custom-scrollbar overflow-y-auto">
-                    <!-- Stock items -->
-                    <li class="flex justify-between items-center py-1 hover:bg-gray-800 rounded-md px-2 cursor-pointer">
-                        <div><span class="font-bold">GOOGL</span> <span class="text-gray-500">Alphabet Inc.</span></div>
-                        <div class="text-green-400 font-medium">+1.52%</div>
-                    </li>
-                    <li class="flex justify-between items-center py-1 hover:bg-gray-800 rounded-md px-2 cursor-pointer">
-                        <div><span class="font-bold">AAPL</span> <span class="text-gray-500">Apple Inc.</span></div>
-                        <div class="text-red-400 font-medium">-0.88%</div>
-                    </li>
-                    <li class="flex justify-between items-center py-1 hover:bg-gray-800 rounded-md px-2 cursor-pointer">
-                        <div><span class="font-bold">TSLA</span> <span class="text-gray-500">Tesla</span></div>
-                        <div class="text-green-400 font-medium">+3.10%</div>
-                    </li>
-                    <li class="flex justify-between items-center py-1 hover:bg-gray-800 rounded-md px-2 cursor-pointer">
-                        <div><span class="font-bold">AMZN</span> <span class="text-gray-500">Amazon.com</span></div>
-                        <div class="text-green-400 font-medium">+0.75%</div>
-                    </li>
-                    <li class="flex justify-between items-center py-1 hover:bg-gray-800 rounded-md px-2 cursor-pointer">
-                        <div><span class="font-bold">MSFT</span> <span class="text-gray-500">Microsoft Corp.</span></div>
-                        <div class="text-red-400 font-medium">-2.15%</div>
-                    </li>
-                    <!-- Repeat for more data -->
-                    <li class="flex justify-between items-center py-1 hover:bg-gray-800 rounded-md px-2 cursor-pointer">
-                        <div><span class="font-bold">NVDA</span> <span class="text-gray-500">NVIDIA Corp.</span></div>
-                        <div class="text-green-400 font-medium">+4.92%</div>
-                    </li>
-                    <li class="flex justify-between items-center py-1 hover:bg-gray-800 rounded-md px-2 cursor-pointer">
-                        <div><span class="font-bold">META</span> <span class="text-gray-500">Meta Platforms</span></div>
-                        <div class="text-red-400 font-medium">-0.12%</div>
-                    </li>
-                    <li class="flex justify-between items-center py-1 hover:bg-gray-800 rounded-md px-2 cursor-pointer">
-                        <div><span class="font-bold">JPM</span> <span class="text-gray-500">JPMorgan Chase</span></div>
-                        <div class="text-green-400 font-medium">+0.45%</div>
-                    </li>
-                    <li class="flex justify-between items-center py-1 hover:bg-gray-800 rounded-md px-2 cursor-pointer">
-                        <div><span class="font-bold">NFLX</span> <span class="text-gray-500">Netflix</span></div>
-                        <div class="text-green-400 font-medium">+1.11%</div>
-                    </li>
-                    <li class="flex justify-between items-center py-1 hover:bg-gray-800 rounded-md px-2 cursor-pointer">
-                        <div><span class="font-bold">BABA</span> <span class="text-gray-500">Alibaba Grp</span></div>
-                        <div class="text-red-400 font-medium">-1.99%</div>
-                    </li>
-                </ul>
-            </aside>
-
-            <!-- 2. Center Panel: Charting Area (Backgrounds: Shades of Gray/Graphite) -->
-            <main class="lg:col-span-6">
+            <!-- 2. Center Panel: Charting Area (EXPANDED to lg:col-span-9) -->
+            <main class="lg:col-span-9">
                 <div class="bg-gray-950 p-4 rounded-xl shadow-lg h-full min-h-[400px] flex flex-col">
                     
                     <!-- Instrument Header -->
@@ -218,7 +227,7 @@
                 </div>
             </main>
 
-            <!-- 3. Right Sidebar: Order/News/Data -->
+            <!-- 3. Right Sidebar: Order/News/Data (lg:col-span-3 remains) -->
             <aside class="lg:col-span-3 space-y-6">
 
                 <!-- Trade Panel (Authority/Focus: Black/Navy) -->
