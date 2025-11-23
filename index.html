@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alpha Trade Pro Dashboard</title>
+    <!-- Favicon: Using Base64 encoded version of the growth arrow SVG for consistency -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3Ryb2tlPSIjNjBhNWZhIiBzdHJva2Utd2lkdGg9IjIiPjxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTEzIDdoOG0wIDB2OG0wLThsLTggOC00LTQtNiA2Ij48L3BhdGg+PC9zdmcvPg==">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Import Inter font from Google Fonts */
@@ -57,18 +59,18 @@
         <!-- Header/Branding (Trust and Stability: Blue) - MODIFIED -->
         <header class="pb-4 border-b border-gray-700 mb-6">
             
-            <!-- Top Row: Logo/Title and TRADE Button -->
-            <div class="flex justify-between items-center mb-4">
-                <div class="flex items-center space-x-3">
+            <!-- Top Row: Logo/Title (Now centered and button removed) -->
+            <div class="flex justify-center items-center mb-4">
+                <div class="flex items-center space-x-3 text-center">
                     <svg class="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
-                    <h1 class="text-2xl font-bold text-gray-50">GUARANTEED CONSISTENT TRADING RESULTS OR YOU DON’T PAY</h1>
+                    <!-- H1 centered and "GUARANTEED" underlined, now explicitly white -->
+                    <h1 class="text-xl md:text-2xl font-bold text-gray-50 text-center">
+                        <span class="underline text-gray-50">GUARANTEED</span> CONSISTENT TRADING RESULTS OR YOU DON’T PAY
+                    </h1>
                 </div>
-                <button id="tradeButton" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-200">
-                    TRADE
-                </button>
             </div>
             
-            <!-- Navigation Links below H1 (Now always visible and full width) -->
+            <!-- Navigation Links below H1 (Unchanged) -->
             <nav class="flex w-full space-x-6 text-sm pt-2 overflow-x-auto whitespace-nowrap">
                 <a href="#" class="text-blue-400 font-semibold border-b-2 border-blue-400 pb-1">Dashboard</a>
                 <a href="#" class="text-gray-400 hover:text-blue-300">Markets</a>
@@ -232,7 +234,8 @@
                             <span class="text-yellow-400">Pending</span>
                         </li>
                     </ul>
-                    <button class="w-full bg-blue-700 hover:bg-blue-800 text-white font-medium py-2 mt-4 rounded-lg transition duration-200">
+                    <!-- Since the TRADE button was removed from the header, this button now acts as the primary Call to Action -->
+                    <button class="w-full bg-blue-700 hover:bg-blue-800 text-white font-medium py-2 mt-4 rounded-lg transition duration-200" id="newOrderButton">
                         New Order
                     </button>
                 </div>
@@ -277,18 +280,21 @@
         // --- Custom JavaScript for Functionality ---
 
         document.addEventListener('DOMContentLoaded', () => {
-            const tradeButton = document.getElementById('tradeButton');
+            // Note: tradeButton is removed, now targeting the New Order button in the Trade Panel
+            const newOrderButton = document.getElementById('newOrderButton');
             const customModal = document.getElementById('customModal');
             const closeModal = document.getElementById('closeModal');
             const modalMessage = document.getElementById('modalMessage');
 
-            // Handle the TRADE button click
-            tradeButton.addEventListener('click', () => {
-                // Show the custom modal instead of using the forbidden alert()
-                modalMessage.textContent = "Initiating Trade Sequence for NASDAQ: TSLA. Please enter order details in the pop-up panel.";
-                customModal.classList.remove('hidden');
-                customModal.classList.add('flex');
-            });
+            // Handle the New Order button click
+            if (newOrderButton) {
+                newOrderButton.addEventListener('click', () => {
+                    // Show the custom modal instead of using the forbidden alert()
+                    modalMessage.textContent = "Initiating New Order for NASDAQ: TSLA. Enter order details in the trade form.";
+                    customModal.classList.remove('hidden');
+                    customModal.classList.add('flex');
+                });
+            }
 
             // Handle modal close button click
             closeModal.addEventListener('click', () => {
