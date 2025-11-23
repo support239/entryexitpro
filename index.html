@@ -59,8 +59,16 @@
         .marquee {
             white-space: nowrap;
             display: inline-block;
-            /* **UPDATED SPEED: 30s for a faster, continuous loop** */
-            animation: marquee-scroll 30s linear infinite; 
+            /* Default (Mobile First): Fast speed */
+            animation: marquee-scroll 15s linear infinite; 
+        }
+
+        /* Media query for Tablets and Desktops (md breakpoint in Tailwind: 768px) */
+        @media (min-width: 768px) {
+            .marquee {
+                /* Slower speed for larger screens */
+                animation: marquee-scroll 30s linear infinite; 
+            }
         }
 
         .marquee-item {
