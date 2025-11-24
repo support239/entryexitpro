@@ -96,7 +96,7 @@ ColoredEMA.DefineColor("Down", Color.RED);
 ColoredEMA.AssignValueColor(if colorCondition > 0 then ColoredEMA.Color("Up") else ColoredEMA.Color("Down"));
 
 # ------------------------------------------------------------------
-#                           BULLISH (LONG) SIGNAL LOGIC
+#                           BULLISH (LONG) SIGNAL LOGIC
 # ------------------------------------------------------------------
 
 # 1. Higher Lows (HL) Condition for 4 consecutive bars
@@ -108,22 +108,22 @@ def fourPlusHLs = hlCount >= 4;
 def closedAboveEMA_Bar0 = close[2] > ema[2];
 
 # 3. The Red 'Breather' Bar (Bar 1) Specifics
-def bar1_Breather_B = close[1] < open[1];        # Bar 1 is Red/Down
-def bar1_HigherHigh_B = high[1] > high[2];       # Bar 1 High > Bar 0 High
-def bar1_LowBelowEMA_B = low[1] < ema[1];        # Bar 1 Low below EMA (tests support)
-def bar1_HighAboveEMA_B = high[1] > ema[1];      # Bar 1 High above EMA
-def bar1_CloseAboveEMA_B = close[1] > ema[1];    # Bar 1 must close above the EMA
+def bar1_Breather_B = close[1] < open[1];        # Bar 1 is Red/Down
+def bar1_HigherHigh_B = high[1] > high[2];       # Bar 1 High > Bar 0 High
+def bar1_LowBelowEMA_B = low[1] < ema[1];        # Bar 1 Low below EMA (tests support)
+def bar1_HighAboveEMA_B = high[1] > ema[1];      # Bar 1 High above EMA
+def bar1_CloseAboveEMA_B = close[1] > ema[1];    # Bar 1 must close above the EMA
 
 # Combined Breather Bar (Bar 1) Conditions
 def breatherConditions_B = bar1_Breather_B AND
-                           bar1_HigherHigh_B AND
-                           bar1_LowBelowEMA_B AND
-                           bar1_HighAboveEMA_B AND
-                           bar1_CloseAboveEMA_B;
+                           bar1_HigherHigh_B AND
+                           bar1_LowBelowEMA_B AND
+                           bar1_HighAboveEMA_B AND
+                           bar1_CloseAboveEMA_B;
 
 # 4. The Bullish Confirmation Bar (Bar 2 - Current Bar) Requirements
-def bar2_Bullish = close > open;                 # Bar 2 is Green/Up
-def bar2_CloseAboveHigh1 = close > high[1];      # Bar 2 must close above Bar 1's HIGH
+def bar2_Bullish = close > open;                 # Bar 2 is Green/Up
+def bar2_CloseAboveHigh1 = close > high[1];      # Bar 2 must close above Bar 1's HIGH
 
 # Bar 2 has a very small upper wick (High - Close < 1/6 of Total Range)
 def bar2_TotalRange = high - low;
@@ -132,14 +132,14 @@ def bar2_AlmostSolid_B = if bar2_TotalRange > 0 then bar2_UpperWick < bar2_Total
 
 # 5. The Complete Bullish Signal
 def BullishSignal = fourPlusHLs[2] AND
-                    closedAboveEMA_Bar0 AND
-                    breatherConditions_B AND
-                    bar2_Bullish AND
-                    bar2_CloseAboveHigh1 AND
-                    bar2_AlmostSolid_B;
+                    closedAboveEMA_Bar0 AND
+                    breatherConditions_B AND
+                    bar2_Bullish AND
+                    bar2_CloseAboveHigh1 AND
+                    bar2_AlmostSolid_B;
 
 # ------------------------------------------------------------------
-#                           BEARISH (SHORT) SIGNAL LOGIC
+#                           BEARISH (SHORT) SIGNAL LOGIC
 # ------------------------------------------------------------------
 
 # 1. Lower Highs (LH) Condition for 4 consecutive bars
@@ -151,22 +151,22 @@ def fourPlusLHs = lhCount >= 4;
 def closedBelowEMA_Bar0 = close[2] < ema[2];
 
 # 3. The Green 'Breather' Bar (Bar 1) Specifics
-def bar1_Breather_S = close[1] > open[1];        # Bar 1 is Green/Up
-def bar1_LowerLow_S = low[1] < low[2];           # Bar 1 Low < Bar 0 Low
-def bar1_HighAboveEMA_S = high[1] > ema[1];      # Bar 1 High above EMA
-def bar1_LowBelowEMA_S = low[1] < ema[1];        # Bar 1 Low below EMA (tests resistance)
-def bar1_CloseBelowEMA_S = close[1] < ema[1];    # Bar 1 must close below the EMA
+def bar1_Breather_S = close[1] > open[1];        # Bar 1 is Green/Up
+def bar1_LowerLow_S = low[1] < low[2];           # Bar 1 Low < Bar 0 Low
+def bar1_HighAboveEMA_S = high[1] > ema[1];      # Bar 1 High above EMA
+def bar1_LowBelowEMA_S = low[1] < ema[1];        # Bar 1 Low below EMA (tests resistance)
+def bar1_CloseBelowEMA_S = close[1] < ema[1];    # Bar 1 must close below the EMA
 
 # Combined Breather Bar (Bar 1) Conditions
 def breatherConditions_S = bar1_Breather_S AND
-                           bar1_LowerLow_S AND
-                           bar1_HighAboveEMA_S AND
-                           bar1_LowBelowEMA_S AND
-                           bar1_CloseBelowEMA_S;
+                           bar1_LowerLow_S AND
+                           bar1_HighAboveEMA_S AND
+                           bar1_LowBelowEMA_S AND
+                           bar1_CloseBelowEMA_S;
 
 # 4. The Bearish Confirmation Bar (Bar 2 - Current Bar) Requirements
-def bar2_Bearish = close < open;                 # Bar 2 is Red/Down
-def bar2_CloseBelowLow1 = close < low[1];        # Bar 2 must close below Bar 1's LOW
+def bar2_Bearish = close < open;                 # Bar 2 is Red/Down
+def bar2_CloseBelowLow1 = close < low[1];        # Bar 2 must close below Bar 1's LOW
 
 # Bar 2 has a very small lower wick (Close - Low < 1/6 of Total Range)
 def bar2_LowerWick = close - low;
@@ -174,14 +174,14 @@ def bar2_AlmostSolid_S = if bar2_TotalRange > 0 then bar2_LowerWick < bar2_Total
 
 # 5. The Complete Bearish Signal
 def BearishSignal = fourPlusLHs[2] AND
-                    closedBelowEMA_Bar0 AND
-                    breatherConditions_S AND
-                    bar2_Bearish AND
-                    bar2_CloseBelowLow1 AND
-                    bar2_AlmostSolid_S;
+                    closedBelowEMA_Bar0 AND
+                    breatherConditions_S AND
+                    bar2_Bearish AND
+                    bar2_CloseBelowLow1 AND
+                    bar2_AlmostSolid_S;
 
 # ------------------------------------------------------------------
-#                           PLOT BUBBLES
+#                           PLOT BUBBLES
 # ------------------------------------------------------------------
 
 # Plot Bullish Signal Bubble (AT the High, anchored ABOVE)
