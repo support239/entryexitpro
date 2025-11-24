@@ -32,10 +32,10 @@
         <!-- Header & Value Proposition -->
         <header class="text-center mb-10">
             <h1 class="text-4xl md:text-5xl font-extrabold text-white leading-tight">
-                Unlock <span class="text-sky-400">Precision</span> and <span class="text-sky-400">Confidence</span> in Every Trade
+                <span class="text-sky-400">Precision</span> Entry <span class="text-sky-400">Trigger</span>
             </h1>
             <p class="mt-4 text-xl text-gray-400 max-w-2xl mx-auto">
-                Discover the simple indicator that pinpoints the exact moment a trend begins, giving you crystal-clear clarity on where to enter the market.
+                Simple indicator pinpoints when the trend begins, and gives you crystal-clear clarity on when to enter.
             </p>
         </header>
 
@@ -75,8 +75,7 @@
                         id="tos-code"
                         readonly
                         class="w-full p-4 h-48 resize-none border-2 border-gray-700 rounded-lg bg-gray-900 text-sky-300 text-sm font-mono leading-relaxed overflow-auto focus:outline-none focus:ring-2 focus:ring-sky-500"
-                    >
-# ThinkScript Indicator for Precision Entry
+                    ># ThinkScript Indicator for Precision Entry
 # This script identifies a high-probability trend initiation point.
 
 def TrendStartSignal = if close > Average(close, 20) and Average(close, 20) > Average(close, 50) and low < Average(close, 20) then 1 else 0;
