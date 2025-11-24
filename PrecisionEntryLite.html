@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Precision Entry Indicator | EntryExitPro</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom font and basic body styling */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fc;
+        }
+        /* Custom scrollbar for the code block */
+        #tos-code::-webkit-scrollbar {
+            width: 8px;
+        }
+        #tos-code::-webkit-scrollbar-thumb {
+            background-color: #3b82f6;
+            border-radius: 4px;
+        }
+        #tos-code::-webkit-scrollbar-track {
+            background-color: #e5e7eb;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="max-w-4xl mx-auto p-4 md:p-8">
+        <!-- Header & Value Proposition -->
+        <header class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
+                Unlock <span class="text-blue-600">Precision</span> and <span class="text-blue-600">Confidence</span> in Every Trade
+            </h1>
+            <p class="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
+                Discover the simple indicator that pinpoints the exact moment a trend begins, giving you crystal-clear clarity on where to enter the market.
+            </p>
+        </header>
+
+        <!-- Video & Code Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- YouTube Video Embed -->
+            <section class="bg-white rounded-xl shadow-2xl overflow-hidden p-0">
+                <div class="aspect-w-16 aspect-h-9" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                    <!-- Placeholder YouTube Embed. Replace 'dQw4w9WgXcQ' with your actual video ID -->
+                    <iframe 
+                        src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0&rel=0" 
+                        title="Embedded Trading Strategy Video" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen 
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 10px 10px 0 0;"
+                        onerror="this.style.display='none'; document.getElementById('video-fallback').style.display='block';"
+                    ></iframe>
+                    <div id="video-fallback" style="display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #1f2937; color: white; display: flex; align-items: center; justify-content: center; text-align: center;">
+                        <p>Video loading failed or video is restricted. Please check the URL.<br> (Placeholder Video Used)</p>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Video Guide: Your First Precision Entry</h2>
+                    <p class="mt-2 text-gray-500">Watch the quick guide above to see exactly how this indicator signals the start of a robust trend and provides the perfect, low-risk entry point.</p>
+                </div>
+            </section>
+
+            <!-- Code Block & Copy Button -->
+            <section class="bg-white rounded-xl shadow-2xl p-6 flex flex-col justify-between">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Copy the ThinkOrSwim Code</h2>
+                    <p class="text-gray-600 mb-4">This is the complete ThinkScript code for the indicator demonstrated in the video. Copy it now and paste it into your Thinkorswim (TOS) platform.</p>
+                    
+                    <!-- Code Textarea -->
+                    <textarea 
+                        id="tos-code"
+                        readonly
+                        class="w-full p-4 h-48 resize-none border-2 border-gray-200 rounded-lg bg-gray-50 text-sm font-mono leading-relaxed overflow-auto focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+# ThinkScript Indicator for Precision Entry
+# This script identifies a high-probability trend initiation point.
+
+def TrendStartSignal = if close > Average(close, 20) and Average(close, 20) > Average(close, 50) and low < Average(close, 20) then 1 else 0;
+
+plot Signal = TrendStartSignal;
+Signal.SetPaintingStrategy(PaintingStrategy.VALUES_BELOW);
+Signal.SetDefaultColor(Color.BLUE);
+Signal.SetLineWeight(2);
+
+Alert(TrendStartSignal, "Precision Entry Signal Fired!", Alert.SOUND_ALL);
+                    </textarea>
+                </div>
+
+                <!-- Copy Button -->
+                <button 
+                    id="copy-button"
+                    class="mt-6 w-full px-6 py-3 text-lg font-semibold text-white bg-blue-600 rounded-lg shadow-lg hover:bg-blue-700 transition duration-300 ease-in-out transform hover:scale-[1.01] focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50"
+                    onclick="copyCode()"
+                >
+                    <span id="button-text">Copy Indicator Code Now</span>
+                </button>
+
+                <!-- Copy Confirmation Message -->
+                <div id="copy-message" class="hidden mt-3 text-center text-sm font-medium text-green-700 bg-green-100 p-2 rounded-lg">
+                    Code copied to clipboard! Ready for Thinkorswim.
+                </div>
+            </section>
+        </div>
+
+        <!-- Instructions Section -->
+        <section class="mt-12 bg-white p-8 rounded-xl shadow-xl">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b pb-2">Your 3-Step Setup Guide</h2>
+            <ol class="space-y-6">
+                <li class="flex items-start">
+                    <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-600 text-white font-bold rounded-full mr-4 text-lg">1</div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900">Watch the Video</h3>
+                        <p class="mt-1 text-gray-600">Understand the foundational concept behind the indicator. Pay close attention to the visual examples of high-precision entries demonstrated.</p>
+                    </div>
+                </li>
+                <li class="flex items-start">
+                    <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-600 text-white font-bold rounded-full mr-4 text-lg">2</div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900">Import the Code</h3>
+                        <p class="mt-1 text-gray-600">In Thinkorswim, navigate to **'Studies' > 'Edit Studies'**. Click **'New'** (or **'Create'**), paste the code you just copied, give it a name like <code class="bg-gray-200 p-1 rounded font-mono text-sm">EntryExitPro Signal</code>, and click **'OK'**.</p>
+                    </div>
+                </li>
+                <li class="flex items-start">
+                    <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-600 text-white font-bold rounded-full mr-4 text-lg">3</div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900">Apply and Practice</h3>
+                        <p class="mt-1 text-gray-600">Add the newly created study to your chart. Use the signals to observe how the market moves after a 'Trend Start' signal fires. This is your first step toward true clarity.</p>
+                    </div>
+                </li>
+            </ol>
+        </section>
+
+        <!-- Mentorship Call-to-Action -->
+        <section class="mt-12 text-center bg-blue-50 border-4 border-blue-200 p-8 rounded-xl shadow-xl">
+            <h2 class="text-3xl font-bold text-blue-800">The Indicator Is The Tool. The Mentorship Is The System.</h2>
+            <p class="mt-4 text-lg text-blue-700 max-w-3xl mx-auto">
+                This powerful indicator will give you *precision*, but true, consistent trading success requires a complete **system** for risk management, trade sizing, and psychological resilience. 
+                <br class="hidden md:inline">
+                If you are serious about transforming your trading from sporadic wins to sustained profitability, our mentorship is the next essential step.
+            </p>
+            <a href="https://entryexitpro.com/mentorship" target="_blank"
+                class="mt-6 inline-block px-12 py-4 text-xl font-extrabold text-white bg-red-600 rounded-full shadow-2xl hover:bg-red-700 transition duration-300 ease-in-out transform hover:scale-[1.05]"
+            >
+                Explore The Full Trading System
+            </a>
+        </section>
+
+        <!-- Footer -->
+        <footer class="mt-10 text-center text-sm text-gray-500 border-t pt-6">
+            &copy; 2025 EntryExitPro. All rights reserved. Trading involves risk.
+        </footer>
+    </div>
+
+    <!-- JavaScript for Copy Functionality -->
+    <script>
+        /**
+         * Copies the content of the TOS code block to the user's clipboard
+         * and provides visual confirmation.
+         */
+        function copyCode() {
+            const codeElement = document.getElementById('tos-code');
+            const copyMessage = document.getElementById('copy-message');
+            const buttonText = document.getElementById('button-text');
+            
+            // 1. Select the text
+            codeElement.select();
+            codeElement.setSelectionRange(0, 99999); // For mobile devices
+
+            let success = false;
+            try {
+                // 2. Execute the copy command
+                // document.execCommand('copy') is used for broader compatibility in iframes
+                success = document.execCommand('copy');
+            } catch (err) {
+                console.error('Copy command failed:', err);
+            }
+
+            if (success) {
+                // 3. Show confirmation message
+                buttonText.textContent = 'Code Copied! (Click to Copy Again)';
+                copyMessage.classList.remove('hidden');
+                
+                // Hide confirmation after 3 seconds
+                setTimeout(() => {
+                    copyMessage.classList.add('hidden');
+                    buttonText.textContent = 'Copy Indicator Code Now';
+                }, 3000);
+            } else {
+                // Fallback for failed copy
+                buttonText.textContent = 'Copy Failed. Please Select and Copy Manually.';
+            }
+        }
+    </script>
+</body>
+</html>
