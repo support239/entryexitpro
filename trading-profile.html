@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trader Profile Builder</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for smooth collapse/expand transition */
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, opacity 0.5s ease;
+            opacity: 0;
+        }
+        .collapsible-content.expanded {
+            max-height: 1000px; /* Large enough value to contain content */
+            opacity: 1;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        .section-header.active {
+            color: #10B981; /* Tailwind 'emerald-500' */
+            font-weight: 600;
+        }
+        .section-header:not(.active) {
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#10B981', // Emerald 500
+                        'secondary': '#374151', // Gray 700
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4 font-sans">
+
+    <div id="app-container" class="w-full max-w-xl bg-white shadow-2xl rounded-xl p-6 md:p-8">
+        <h1 class="text-3xl font-extrabold text-primary mb-6 text-center">
+            Trader Profile Decision Tree
+        </h1>
+        <p class="text-secondary text-center mb-8">
+            Select an option in each step to reveal the next set of choices.
+        </p>
+
+        <form id="decisionForm">
+            <!-- Array of all sections -->
+            <div id="sections-container">
+                
+                <!-- STEP 1: Lifestyle -->
+                <div id="section-1" data-order="1" class="mb-6 border-b pb-4">
+                    <div class="section-header text-lg font-semibold text-gray-800 flex items-center justify-between">
+                        <span>1. Lifestyle</span>
+                        <svg class="h-5 w-5 text-primary transition-transform duration-500" viewBox="0 0 20 20" fill="currentColor">
+                             <!-- Initial open state icon (no collapse needed) -->
+                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="collapsible-content expanded pt-4 space-y-3" data-name="Lifestyle">
+                        <!-- Radio buttons for Step 1 -->
+                        <label class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-primary/10 transition duration-200 cursor-pointer">
+                            <input type="radio" name="lifestyle" value="Full-time dayshift" class="h-4 w-4 text-primary focus:ring-primary border-gray-300">
+                            <span class="ml-3 text-sm font-medium text-secondary">Full-time dayshift</span>
+                        </label>
+                        <label class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-primary/10 transition duration-200 cursor-pointer">
+                            <input type="radio" name="lifestyle" value="Full-time Night Shift" class="h-4 w-4 text-primary focus:ring-primary border-gray-300">
+                            <span class="ml-3 text-sm font-medium text-secondary">Full-time Night Shift</span>
+                        </label>
+                        <label class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-primary/10 transition duration-200 cursor-pointer">
+                            <input type="radio" name="lifestyle" value="Remote worker" class="h-4 w-4 text-primary focus:ring-primary border-gray-300">
+                            <span class="ml-3 text-sm font-medium text-secondary">Remote worker</span>
+                        </label>
+                        <label class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-primary/10 transition duration-200 cursor-pointer">
+                            <input type="radio" name="lifestyle" value="Stay at home parent" class="h-4 w-4 text-primary focus:ring-primary border-gray-300">
+                            <span class="ml-3 text-sm font-medium text-secondary">Stay at home parent</span>
+                        </label>
+                        <label class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-primary/10 transition duration-200 cursor-pointer">
+                            <input type="radio" name="lifestyle" value="College student" class="h-4 w-4 text-primary focus:ring-primary border-gray-300">
+                            <span class="ml-3 text-sm font-medium text-secondary">College student</span>
+                        </label>
+                        <label class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-primary/10 transition duration-200 cursor-pointer">
+                            <input type="radio" name="lifestyle" value="Entrepreneur" class="h-4 w-4 text-primary focus:ring-primary border-gray-300">
+                            <span class="ml-3 text-sm font-medium text-secondary">Entrepreneur</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- STEP 2: Family situation -->
+                <div id="section-2" data-order="2" class="mb-6 border-b pb-4">
+                    <div class="section-header text-lg font-semibold text-gray-400 flex items-center justify-between">
+                        <span>2. Family Situation</span>
+                        <svg class="h-5 w-5 text-gray-400 transition-transform duration-500" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="collapsible-content pt-4 space-y-3" data-name="Family Situation">
+                        <!-- Radio buttons for Step 2 -->
+                        <label class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-primary/10 transition duration-200 cursor-pointer">
+                            <input type="radio" name="family" value="Married" class="h-4 w-4 text-primary focus:ring-primary border-gray-300">
+                            <span class="ml-3 text-sm font-medium text-secondary">Married</span>
+                        </label>
+                        <label class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-primary/10 transition duration-200 cursor-pointer">
+                            <input type="radio" name="family" value="Married with kids" class="h-4 w-4 text-primary focus:ring-primary border-gray-300">
+                            <span class="ml-3 text-sm font-medium text-secondary">Married with kids</span>
+                        </label>
+                        <label class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-primary/10 transition duration-200 cursor-pointer">
+                            <input type="radio" name="family" value="Single" class="h-4 w-4 text-primary focus:ring-primary border-gray-300">
+                            <span class="ml-3 text-sm font-medium text-secondary">Single</span>
+                        </label>
+                        <label class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-primary/10 transition duration-200 cursor-pointer">
+                            <input type="radio" name="family" value="Single with kids" class="h-4 w-4 text-primary focus:ring-primary border-gray-300">
+                            <span class="ml-3 text-sm font-medium text-secondary">Single with kids</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- STEP 3: Typical Trading Availability -->
+                <div id="section-3" data-order="3" class="mb-6 border-b pb-4">
+                    <div class="section-header text-lg font-semibold text-gray-400 flex items-center justify-between">
+                        <span>3. Typical Trading Availability</span>
+                        <svg class="h-5 w-5 text-gray-400 transition-transform duration-500" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="collapsible-content pt-4 space-y-3" data-name="Trading Availability">
+                        <!-- Radio buttons for Step 3 -->
+                        <label class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-primary/10 transition duration-200 cursor-pointer">
+                            <input type="radio" name="availability" value="Premarket, lunch, after work" class="h-4 w-4 text-primary focus:ring-primary border-gray-300">
+                            <span class="ml-3 text-sm font-medium text-secondary">Premarket, lunch, after work</span>
+                        </label>
+                        <label class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-primary/10 transition duration-200 cursor-pointer">
+                            <input type="radio" name="availability" value="Market open, morning session" class="h-4 w-4 text-primary focus:ring-primary border-gray-300">
+                            <span class="ml-3 text-sm font-medium text-secondary">Market open, morning session</span>
+                        </label>
+                        <label class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-primary/10 transition duration-200 cursor-pointer">
+                            <input type="radio" name="availability" value="On/off all day" class="h-4 w-4 text-primary focus:ring-primary border-gray-300">
+                            <span class="ml-3 text-sm font-medium text-secondary">On/off all day</span>
+                        </label>
+                        <label class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-primary/10 transition duration-200 cursor-pointer">
+                            <input type="radio" name="availability" value="First hour, naptime, nighttime" class="h-4 w-4 text-primary focus:ring-primary border-gray-300">
+                            <span class="ml-3 text-sm font-medium text-secondary">First hour, naptime, nighttime</span>
+                        </label>
+                        <label class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-primary/10 transition duration-200 cursor-pointer">
+                            <input type="radio" name="availability" value="Flexible" class="h-4 w-4 text-primary focus:ring-primary border-gray-300">
+                            <span class="ml-3 text-sm font-medium text-secondary">Flexible</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- STEP 4: Time available -->
+                <div id="section-4" data-order="4" class="mb-6 border-b pb-4">
+                    <div class="section-header text-lg font-semibold text-gray-400 flex items-center justify-between">
+                        <span>4. Time Available</span>
+                        <svg class="h-5 w-5 text-gray-400 transition-transform duration-500" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="collapsible-content pt-4 space-y-3" data-name="Time Available">
+                        <!-- Radio buttons for Step 4 -->
+                        <label class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-primary/10 transition duration-200 cursor-pointer">
+                            <input type="radio" name="time" value="30 minutes / day" class="h-4 w-4 text-primary focus:ring-primary border-gray-300">
+                            <span class="ml-3 text-sm font-medium text-secondary">30 minutes / day</span>
+                        </label>
+                        <label class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-primary/10 transition duration-200 cursor-pointer">
+                            <input type="radio" name="time" value="1 - 2 hours / day" class="h-4 w-4 text-primary focus:ring-primary border-gray-300">
+                            <span class="ml-3 text-sm font-medium text-secondary">1 - 2 hours / day</span>
+                        </label>
+                        <label class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-primary/10 transition duration-200 cursor-pointer">
+                            <input type="radio" name="time" value="3 - 4 hours / day" class="h-4 w-4 text-primary focus:ring-primary border-gray-300">
+                            <span class="ml-3 text-sm font-medium text-secondary">3 - 4 hours / day</span>
+                        </label>
+                        <label class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-primary/10 transition duration-200 cursor-pointer">
+                            <input type="radio" name="time" value="Full availability" class="h-4 w-4 text-primary focus:ring-primary border-gray-300">
+                            <span class="ml-3 text-sm font-medium text-secondary">Full availability</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- STEP 5: Personality traits -->
+                <div id="section-5" data-order="5" class="mb-6 pb-4">
+                    <div class="section-header text-lg font-semibold text-gray-400 flex items-center justify-between">
+                        <span>5. Personality Traits</span>
+                        <svg class="h-5 w-5 text-gray-400 transition-transform duration-500" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="collapsible-content pt-4 space-y-3" data-name="Personality Traits">
+                        <!-- Radio buttons for Step 5 -->
+                        <label class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-primary/10 transition duration-200 cursor-pointer">
+                            <input type="radio" name="personality" value="Hate being wrong, need high win rates" class="h-4 w-4 text-primary focus:ring-primary border-gray-300">
+                            <span class="ml-3 text-sm font-medium text-secondary">Hate being wrong, need high win rates</span>
+                        </label>
+                        <label class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-primary/10 transition duration-200 cursor-pointer">
+                            <input type="radio" name="personality" value="Logic driven, rule based" class="h-4 w-4 text-primary focus:ring-primary border-gray-300">
+                            <span class="ml-3 text-sm font-medium text-secondary">Logic driven, rule based</span>
+                        </label>
+                        <label class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-primary/10 transition duration-200 cursor-pointer">
+                            <input type="radio" name="personality" value="Want speed/action" class="h-4 w-4 text-primary focus:ring-primary border-gray-300">
+                            <span class="ml-3 text-sm font-medium text-secondary">Want speed/action</span>
+                        </label>
+                        <label class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-primary/10 transition duration-200 cursor-pointer">
+                            <input type="radio" name="personality" value="Willing to wait for the perfect set up" class="h-4 w-4 text-primary focus:ring-primary border-gray-300">
+                            <span class="ml-3 text-sm font-medium text-secondary">Willing to wait for the perfect set up</span>
+                        </label>
+                        <label class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-primary/10 transition duration-200 cursor-pointer">
+                            <input type="radio" name="personality" value="Want high accuracy?" class="h-4 w-4 text-primary focus:ring-primary border-gray-300">
+                            <span class="ml-3 text-sm font-medium text-secondary">Want high accuracy?</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Final Results and Message Box -->
+            <div id="results" class="hidden mt-8 p-6 bg-primary/10 border border-primary text-secondary rounded-lg transition-opacity duration-500 opacity-0">
+                <h3 class="text-xl font-bold text-primary mb-3">Your Profile Summary</h3>
+                <p class="mb-4">Based on your choices, here is a summary of your trading profile:</p>
+                <ul id="summaryList" class="list-disc list-inside space-y-1 text-sm">
+                    <!-- Summary items will be inserted here -->
+                </ul>
+                <button type="button" onclick="resetForm()" class="mt-4 w-full px-4 py-2 bg-primary text-white font-medium rounded-lg hover:bg-primary/80 transition duration-200 shadow-md">
+                    Start Over
+                </button>
+            </div>
+            
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('decisionForm');
+        const sectionsContainer = document.getElementById('sections-container');
+        const sections = Array.from(sectionsContainer.children).filter(el => el.id.startsWith('section-'));
+        const totalSections = sections.length;
+        const resultsBox = document.getElementById('results');
+        const summaryList = document.getElementById('summaryList');
+
+        // Initial setup: Collapse all sections except the first one
+        sections.forEach((section, index) => {
+            const content = section.querySelector('.collapsible-content');
+            if (index > 0) {
+                content.classList.remove('expanded');
+            }
+        });
+
+        // Function to update the header visual state
+        function updateHeaderState(sectionElement, isSelected = false) {
+            const header = sectionElement.querySelector('.section-header');
+            const icon = header.querySelector('svg');
+
+            if (isSelected) {
+                // Style for completed/active section
+                header.classList.add('active', 'text-gray-800');
+                header.classList.remove('text-gray-400');
+                icon.classList.remove('text-gray-400', 'rotate-0');
+                icon.classList.add('text-primary', 'rotate-180');
+            } else {
+                // Style for collapsed/future section
+                header.classList.remove('active', 'text-gray-800');
+                header.classList.add('text-gray-400');
+                icon.classList.remove('text-primary', 'rotate-180');
+                icon.classList.add('text-gray-400', 'rotate-0');
+            }
+        }
+        
+        // Function to expand a specific section
+        function expandSection(sectionElement) {
+            const header = sectionElement.querySelector('.section-header');
+            const content = sectionElement.querySelector('.collapsible-content');
+
+            // Update header to active (but not yet selected) state
+            header.classList.add('text-gray-800');
+            header.classList.remove('text-gray-400');
+            
+            // Expand the content
+            content.classList.add('expanded');
+        }
+
+        // Function to collapse a specific section
+        function collapseSection(sectionElement) {
+            const header = sectionElement.querySelector('.section-header');
+            const content = sectionElement.querySelector('.collapsible-content');
+
+            // Ensure header is not active/selected color
+            header.classList.remove('active', 'text-gray-800');
+            header.classList.add('text-gray-400');
+
+            // Collapse the content
+            content.classList.remove('expanded');
+        }
+
+        // Main event handler for radio button changes
+        function handleSelection(event) {
+            const selectedRadio = event.target;
+            if (selectedRadio.type !== 'radio' || !selectedRadio.checked) return;
+
+            // 1. Get current and next section index
+            const currentSection = selectedRadio.closest('[data-order]');
+            if (!currentSection) return;
+            const currentOrder = parseInt(currentSection.dataset.order);
+            const nextOrder = currentOrder + 1;
+            
+            // 2. Mark the current section as completed
+            updateHeaderState(currentSection, true);
+
+            // 3. Collapse all subsequent sections and reset their radio buttons
+            sections.forEach((section) => {
+                const sectionOrder = parseInt(section.dataset.order);
+                if (sectionOrder > currentOrder) {
+                    collapseSection(section);
+                    // Reset radio buttons in subsequent sections
+                    const radios = section.querySelectorAll('input[type="radio"]');
+                    radios.forEach(radio => radio.checked = false);
+                }
+            });
+
+            // 4. Expand the next section
+            if (nextOrder <= totalSections) {
+                const nextSection = document.querySelector(`#section-${nextOrder}`);
+                if (nextSection) {
+                    expandSection(nextSection);
+                }
+            }
+            
+            // 5. Check if this was the last step
+            if (currentOrder === totalSections) {
+                displayResults();
+            } else {
+                // Ensure results are hidden if we re-select an earlier step
+                resultsBox.classList.add('hidden', 'opacity-0');
+            }
+        }
+
+        // Function to display the final results
+        function displayResults() {
+            const formData = new FormData(form);
+            summaryList.innerHTML = '';
+            
+            for (const [key, value] of formData.entries()) {
+                const li = document.createElement('li');
+                // Format the label nicely using the data-name attribute from the content div
+                const sectionDiv = document.querySelector(`[name="${key}"]`).closest('.collapsible-content');
+                const label = sectionDiv ? sectionDiv.dataset.name : key;
+                li.innerHTML = `<span class="font-medium">${label}:</span> ${value}`;
+                summaryList.appendChild(li);
+            }
+
+            // Show the results box with a fade-in effect
+            resultsBox.classList.remove('hidden');
+            setTimeout(() => {
+                resultsBox.classList.remove('opacity-0');
+                resultsBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 10);
+        }
+
+        // Function to reset the entire form
+        function resetForm() {
+            form.reset();
+            resultsBox.classList.add('hidden', 'opacity-0');
+
+            // Reset all sections to initial state
+            sections.forEach((section, index) => {
+                const sectionOrder = parseInt(section.dataset.order);
+                if (sectionOrder === 1) {
+                    expandSection(section);
+                    updateHeaderState(section, false);
+                } else {
+                    collapseSection(section);
+                    updateHeaderState(section, false);
+                }
+            });
+            // Reset header for the first section explicitly
+            const header1 = document.getElementById('section-1').querySelector('.section-header');
+            header1.classList.remove('active');
+            header1.classList.add('text-gray-800');
+        }
+
+        // Attach a single delegated listener to the form element
+        form.addEventListener('change', handleSelection);
+        
+        // Allow clicking on previous headers to re-open them (without resetting)
+        sections.forEach(section => {
+            const header = section.querySelector('.section-header');
+            header.addEventListener('click', () => {
+                const content = section.querySelector('.collapsible-content');
+                if (!content.classList.contains('expanded')) {
+                    // Collapse all other sections before expanding this one
+                    sections.forEach(s => {
+                         if (s !== section) {
+                            collapseSection(s);
+                         }
+                    });
+                    expandSection(section);
+                }
+            });
+        });
+        
+    </script>
+
+</body>
+</html>
